@@ -54,4 +54,4 @@ Tujuan utama dari mata kuliah ini adalah untuk memberikan mahasiswa keterampilan
 
 ## Lisensi
 
-Proyek ini dibuat sebagai bagian dari tugas mata kuliah Pengembangan Berbasis Web (PBW) dan tidak dimaksudkan untuk didistribusikan secara komersial.
+Proyek ini dibuat sebagai bagian dari tugas mata kuliah Pemrograman Berbasis Web (PBW) dan tidak dimaksudkan untuk didistribusikan secara komersial.
