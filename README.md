@@ -1,4 +1,4 @@
-# Mata Kuliah Pengembangan Berbasis Web (PBW)
+# Mata Kuliah Pemrograman Berbasis Web (PBW)
 
 ## Informasi Mata Kuliah
 
