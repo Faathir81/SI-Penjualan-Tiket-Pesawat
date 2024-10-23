@@ -10,9 +10,9 @@
 - **Kelas**: [Kelas A]
 
 ## Anggota Kelompok Kami
-1. **Husein Zidan** (NIM: [4522210012])
-2. **Zahra Jane Arnecia** (NIM: [4522210028])
-3. **Faathir Akbar Nugroho** (NIM: [4522210033])
+1. **Husein Zidan** (NPM: [4522210012])
+2. **Zahra Jane Arnecia** (NPM: [4522210028])
+3. **Faathir Akbar Nugroho** (NPM: [4522210033])
 
 ## Tema
 Penjualan Tiket Pesawat
