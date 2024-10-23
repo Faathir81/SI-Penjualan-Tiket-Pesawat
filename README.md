@@ -9,6 +9,7 @@
 - **Dosen Pengampu**: [Adi Wahyu Pribadi, S.Si., M.Kom]
 - **Kelas**: [Kelas A]
 
+## Anggota Kelompok Kami
 1. **Husein Zidan** (NIM: [4522210012])
 2. **Zahra Jane Arnecia** (NIM: [4522210028])
 3. **Faathir Akbar Nugroho** (NIM: [4522210033])
