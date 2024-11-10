@@ -29,28 +29,24 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        // Validasi input
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+            'usertype' => ['required', 'in:user,admin'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'role' => ['required', 'string', 'in:user,admin'],
         ]);
 
-        // Membuat user dengan menyertakan role
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'usertype' => $request->usertype,
             'password' => Hash::make($request->password),
-            'role' => $request->role,  // Menyimpan role ke dalam database
         ]);
 
-        // Memicu event registered dan login user
         event(new Registered($user));
-        Auth::login($user);
 
-        // Redirect ke dashboard
-        return redirect()->route('dashboard');
+        // Auth::login($user);
+
+        return redirect('/');
     }
-
 }
