@@ -24,11 +24,11 @@
         "pestphp/pest-plugin": "^3.0.0",
         "pestphp/pest-plugin-arch": "^3.0.0",
         "pestphp/pest-plugin-mutate": "^3.0.5",
-        "phpunit/phpunit": "^11.4.2"
+        "phpunit/phpunit": "^11.4.3"
     },
     "conflict": {
         "filp/whoops": "<2.16.0",
-        "phpunit/phpunit": ">11.4.2",
+        "phpunit/phpunit": ">11.4.3",
         "sebastian/exporter": "<6.0.0",
         "webmozart/assert": "<1.11.0"
     },
@@ -55,7 +55,7 @@
     "require-dev": {
         "pestphp/pest-dev-tools": "^3.3.0",
         "pestphp/pest-plugin-type-coverage": "^3.1.0",
-        "symfony/process": "^7.1.5"
+        "symfony/process": "^7.1.6"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

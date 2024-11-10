@@ -56,12 +56,9 @@
                                     @endif
                                 </td>
 
-                                <!-- dashboard.blade.php -->
                                 <td>
-                                    <a href="{{ route('pesanan.dashboard', ['product_id' => $product->id]) }}"
-                                        class="btn btn-primary">Pesan</a>
+                                    <a href="#" class="btn btn-primary">Pesan</a>
                                 </td>
-
                             </tr>
                             @endforeach
                         </tbody>

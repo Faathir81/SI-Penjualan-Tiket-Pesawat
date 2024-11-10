@@ -26,7 +26,8 @@ class Product extends Model
         return $this->belongsTo(User::class, 'id_user');
     }
 
-    public static function getFilteredProducts($departureLocation)
+    // app/Models/Product.php
+    public static function getFilteredProducts($departureLocation = null)
     {
         return self::when($departureLocation, function ($query, $departureLocation) {
             $query->where('departure_location', 'like', '%' . $departureLocation . '%');

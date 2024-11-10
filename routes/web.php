@@ -10,32 +10,20 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\CheckinController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    $products = Product::getFilteredProducts(request('departure_location'));
-    return view('dashboard', compact('products'));
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [UserController::class, 'showDashboard'])
+     ->middleware(['auth', 'verified'])
+     ->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-// routes/web.php
-Route::middleware(['auth', 'verified'])->group(function () {
-
-    Route::get('/pesanan/dashboard/{product_id}', [PesananController::class, 'index'])->name('pesanan.dashboard');
-
-    Route::post('/pesanan/create/{product_id}', [PesananController::class, 'create'])->name('pesanan.create');
-
-    Route::post('/transaksi/store', [TransaksiController::class, 'store'])->name('transaksi.store');
-
-    Route::get('/transaksi/dashboard/{transaksi_id}', [TransaksiController::class, 'dashboard'])->name('transaksi.dashboard');
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
