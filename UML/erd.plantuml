@@ -1,0 +1,55 @@
+@startuml Role-Based
+entity "Users" as user {
+    +user_id : INT
+    username : VARCHAR
+    password : VARCHAR
+    email : VARCHAR
+    phone : VARCHAR
+    usertype : ENUM("user", "admin")
+}
+
+entity "Ticket" as ticket {
+    +ticket_id : INT
+    Judul : VARCHAR
+    airline : VARCHAR
+    flight_number : VARCHAR
+    departure : DATETIME
+    arrival : DATETIME
+    departure_city : VARCHAR
+    arrival_city : VARCHAR
+    seat_number : VARCHAR
+    purchase_date : DATE
+    price : DECIMAL
+    category : ENUM("class A", "class B", "class C")
+    admin_id : INT
+}
+
+entity "ProductTransaction" as product_transaction {
+    +transaction_id : INT
+    user_id : INT
+    ticket_id : INT
+    transaction_date : DATETIME
+    amount : DECIMAL
+    payment_method : VARCHAR
+}
+
+entity "CheckIn" as checkin {
+    +checkin_id : INT
+    user_id : INT
+    transaction_id : INT
+    flight_date : DATETIME
+}
+
+entity "Order" as order {
+    +order_id : INT
+    order_date : DATE
+    total_amount : DECIMAL
+    user_id : INT
+}
+
+user ||--o{ order : "user"
+user ||--o{ ticket : "admin"
+order ||--o{ product_transaction : "makes"
+ticket ||--o{ product_transaction : "is part of"
+checkin }o--|| product_transaction : "for"
+@enduml
