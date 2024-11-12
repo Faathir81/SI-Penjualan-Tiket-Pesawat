@@ -43,6 +43,15 @@ Proyek ini adalah Tugas Besar untuk mata kuliah **Pemrograman Berbasis Web** yan
 - Transaksi : Digunakan untuk proses transaksi/pembayaran
 - Riwayat Pembelian : Digunakan untuk melihat Riwayat pembelian
 
+## ERD
+<img src="assets/ERD.png" width="600" height="600">
+
+## Flowchart
+<img src="assets/flowchart.png" width="500" height="500">
+
+## Use Case
+<img src="assets/usecase.PNG">
+
 ## Teknologi yang Digunakan
 
 - **Backend**: Laravel 11
