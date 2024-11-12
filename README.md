@@ -22,7 +22,7 @@ Proyek ini adalah Tugas Besar untuk mata kuliah **Pemrograman Berbasis Web** yan
 
 ### Foto Anggota Kelompok
 <div align="center">
-    <img src="assets/husein.jpg" alt="Husein Zidan" width="150" height="150" style="border-radius:50%; margin: 10px;">
+    <img src="assets/Capture.PNG">
 </div>
 
 ## Fitur Utama
