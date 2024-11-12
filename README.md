@@ -21,7 +21,7 @@ Proyek ini adalah Tugas Besar untuk mata kuliah **Pemrograman Berbasis Web** yan
 ## Teknologi yang Digunakan
 
 - **Backend**: Laravel 11
-- **Frontend**: HTML, CSS, JavaScript
+- **Frontend**: Tailwind & JavaScript
 - **Database**: MySQL
 - **Version Control**: Git
 
