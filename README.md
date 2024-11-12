@@ -8,6 +8,6 @@
 </p>
 
 <img src="https://github.com/Faathir81/SI-Penjualan-Tiket-Pesawat/blob/main/assets/Capture.PNG">
-Husein sebagai Arsitek softwere<br />
-Husein sebagai Backend Engineer<br />
-Husein sebagai Frontend Engineer<br />
+Husein Zidan sebagai Arsitek softwere<br />
+Faathir Akbar Nugroho sebagai Backend Engineer<br />
+Zahra Jane Arnecia sebagai Frontend Engineer<br />
