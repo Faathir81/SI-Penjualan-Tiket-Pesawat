@@ -25,12 +25,23 @@ Proyek ini adalah Tugas Besar untuk mata kuliah **Pemrograman Berbasis Web** yan
 |    <img src="https://cultofthepartyparrot.com/parrots/hd/spinningparrot.gif" width="30" height="30"/>    | **Zahra Jane Arnecia**   | 4522210028   | Frontend Engineer   |
 |    <img src="https://cultofthepartyparrot.com/parrots/hd/60fpsparrot.gif" width="30" height="30"/>    | **Faathir Akbar Nugroho**| 4522210033   | Backend Engineer    |
 
-## Fitur Utama
+## Fitur Admin
 
-- **Pemesanan Tiket**: Pengguna dapat memesan tiket pesawat secara online.
-- **Pengelolaan Penerbangan**: Administrator dapat menambahkan, mengedit, atau menghapus jadwal penerbangan.
-- **Pembayaran**: Integrasi dengan beberapa metode pembayaran untuk memudahkan pengguna.
-- **Frontend Responsif**: Tampilan yang dioptimalkan untuk berbagai perangkat, baik desktop maupun mobile.
+- Register : digunakan untuk membuat akun
+- login/logut : digunkan untuk mengakses & logut aplikasi web capsswing
+- Create : digunakan untuk upload,edit,hapus tiket) 
+- Pesanan Pelanggan : digunakan untuk melihat pesanan tiket pelanggan
+- Transaksi : digunkaan untuk konfirmasi pesanan pelanggan (konfirmasi  pesanan selesai)
+ = Riwayat Penjualan : digunakan untuk melihat Riwayat penjualan
+
+## Fitur Konsumen
+
+- Register : Digunakan untuk membuat akun
+- login/logut : Digunkan untuk mengakses & logut aplikasi web capsswing
+- Beli Tiket : Dapat digunakan untuk sebagai laman pembeian tiket Ekonomi, business class
+- Jadwal Penerbangan : Digunakan untuk melihat jadwal penerbangan pelanggan
+- Transaksi : Digunakan untuk proses transaksi/pembayaran
+- Riwayat Pembelian : Digunakan untuk melihat Riwayat pembelian
 
 ## Teknologi yang Digunakan
 
