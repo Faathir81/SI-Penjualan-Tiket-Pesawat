@@ -7,9 +7,9 @@ Proyek ini adalah Tugas Besar untuk mata kuliah **Pemrograman Berbasis Web** yan
 
 | Nama                   | NIM          | Peran               |
 |------------------------|--------------|---------------------|
-| ![Husein]() **Husein Zidan** | 4522210012 | Arsitek Software    |
-| ![Zahra]() **Zahra Jane Arnecia** | 4522210028 | Frontend Engineer   |
-| ![Faathir]() **Faathir Akbar Nugroho** | 4522210033 | Backend Engineer    |
+| **Husein Zidan** | 4522210012 | Arsitek Software    |
+| **Zahra Jane Arnecia** | 4522210028 | Frontend Engineer   |
+| **Faathir Akbar Nugroho** | 4522210033 | Backend Engineer    |
 
 ## Fitur Utama
 
