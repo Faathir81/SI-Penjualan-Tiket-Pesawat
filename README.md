@@ -7,6 +7,12 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+### Foto Anggota Kelompok
+<div align="center">
+    <img src="assets/Capture.PNG">
+</div>
+
+
 # ✈️ PENJUALAN TIKET PESAWAT - KELOMPOK 1
 
 ## Tentang Proyek
@@ -19,11 +25,6 @@ Proyek ini adalah Tugas Besar untuk mata kuliah **Pemrograman Berbasis Web** yan
 | **Husein Zidan**         | 4522210012   | Arsitek Software    |     <img src="https://cultofthepartyparrot.com/parrots/hd/laptop_parrot.gif" width="30" height="30"/>    |
 | **Zahra Jane Arnecia**   | 4522210028   | Frontend Engineer   | <img src="https://cultofthepartyparrot.com/parrots/hd/spinningparrot.gif" width="30" height="30"/>   |
 | **Faathir Akbar Nugroho**| 4522210033   | Backend Engineer    | <img src="https://cultofthepartyparrot.com/parrots/hd/60fpsparrot.gif" width="30" height="30"/>    |
-
-### Foto Anggota Kelompok
-<div align="center">
-    <img src="assets/Capture.PNG">
-</div>
 
 ## Fitur Utama
 
