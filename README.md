@@ -19,11 +19,11 @@ Proyek ini adalah Tugas Besar untuk mata kuliah **Pemrograman Berbasis Web** yan
 
 ## Anggota Kelompok
 
-| Nama                     | NIM          | Peran               | Avatar              |
-|--------------------------|--------------|---------------------|---------------------|
-| **Husein Zidan**         | 4522210012   | Arsitek Software    |     <img src="https://cultofthepartyparrot.com/parrots/hd/laptop_parrot.gif" width="30" height="30"/>    |
-| **Zahra Jane Arnecia**   | 4522210028   | Frontend Engineer   | <img src="https://cultofthepartyparrot.com/parrots/hd/spinningparrot.gif" width="30" height="30"/>   |
-| **Faathir Akbar Nugroho**| 4522210033   | Backend Engineer    | <img src="https://cultofthepartyparrot.com/parrots/hd/60fpsparrot.gif" width="30" height="30"/>    |
+| Avatar              | Nama                     | NIM          | Peran               |
+|---------------------|--------------------------|--------------|---------------------|
+|    <img src="https://cultofthepartyparrot.com/parrots/hd/laptop_parrot.gif" width="30" height="30"/>    | **Husein Zidan**         | 4522210012   | Arsitek Software    |
+|    <img src="https://cultofthepartyparrot.com/parrots/hd/spinningparrot.gif" width="30" height="30"/>    | **Zahra Jane Arnecia**   | 4522210028   | Frontend Engineer   |
+|    <img src="https://cultofthepartyparrot.com/parrots/hd/60fpsparrot.gif" width="30" height="30"/>    | **Faathir Akbar Nugroho**| 4522210033   | Backend Engineer    |
 
 ## Fitur Utama
 
