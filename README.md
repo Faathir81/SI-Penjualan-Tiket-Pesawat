@@ -8,6 +8,6 @@
 </p>
 
 <img src="https://github.com/Faathir81/SI-Penjualan-Tiket-Pesawat/blob/main/assets/Capture.PNG">
-Husein sebagai Arsitek softwere
-Husein sebagai Backend Engineer
-Husein sebagai Frontend Engineer
+Husein sebagai Arsitek softwere<br />
+Husein sebagai Backend Engineer<br />
+Husein sebagai Frontend Engineer<br />
