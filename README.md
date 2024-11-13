@@ -19,7 +19,7 @@ Proyek ini adalah Tugas Besar untuk mata kuliah **Pemrograman Berbasis Web** yan
 
 ## Anggota Kelompok
 
-| Avatar              | Nama                     | NIM          | Peran               |
+| Avatar              | Nama                     | NPM          | Peran               |
 |---------------------|--------------------------|--------------|---------------------|
 |    <img src="https://cultofthepartyparrot.com/parrots/hd/laptop_parrot.gif" width="30" height="30"/>    | **Husein Zidan**         | 4522210012   | Architecture Software    |
 |    <img src="https://cultofthepartyparrot.com/parrots/hd/spinningparrot.gif" width="30" height="30"/>    | **Zahra Jane Arnecia**   | 4522210028   | Frontend Engineer   |
