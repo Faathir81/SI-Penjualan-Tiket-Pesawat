@@ -8,7 +8,7 @@ ARG POSTGRES_VERSION=17
 
 WORKDIR /var/www/html
 
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=UTC
 ENV SUPERVISOR_PHP_COMMAND="/usr/bin/php -d variables_order=EGPCS /var/www/html/artisan serve --host=0.0.0.0 --port=80"
 ENV SUPERVISOR_PHP_USER="sail"
@@ -27,7 +27,7 @@ RUN apt-get update && apt-get upgrade -y \
     && apt-get update \
     && apt-get install -y php8.0-cli php8.0-dev \
        php8.0-pgsql php8.0-sqlite3 php8.0-gd php8.0-imagick \
-       php8.0-curl php8.0-memcached \
+       php8.0-curl php8.0-memcached php8.0-mongodb \
        php8.0-imap php8.0-mysql php8.0-mbstring \
        php8.0-xml php8.0-zip php8.0-bcmath php8.0-soap \
        php8.0-intl php8.0-readline php8.0-pcov \

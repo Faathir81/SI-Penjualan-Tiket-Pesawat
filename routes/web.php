@@ -11,6 +11,8 @@ use App\Http\Controllers\PesananController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\CheckinController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -34,6 +36,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/products/edit/{id}', [ProductController::class, 'edit'])->name('admin/products/edit');
     Route::put('/admin/products/edit/{id}', [ProductController::class, 'update'])->name('admin/products/update');
     Route::get('/admin/products/delete/{id}', [ProductController::class, 'delete'])->name('admin/products/delete');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/order/{productId}', [OrderController::class, 'create'])->name('orders.create');
+    Route::post('/orders', [OrderController::class, 'store'])->name('orders.store')->middleware('auth');
 });
 
 require __DIR__ . '/auth.php';

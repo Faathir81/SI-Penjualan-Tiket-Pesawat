@@ -57,7 +57,7 @@
                                 </td>
 
                                 <td>
-                                    <a href="#" class="btn btn-primary">Pesan</a>
+                                    <a href="{{ route('orders.create', $product->id) }}" class="btn btn-primary">Pesan</a>
                                 </td>
                             </tr>
                             @endforeach
