@@ -19,16 +19,16 @@ Proyek ini adalah Tugas Besar untuk mata kuliah **Pemrograman Berbasis Web** yan
 
 ## Anggota Kelompok
 
-| Avatar              | Nama                     | NIM          | Peran               |
+| Avatar              | Nama                     | NPM          | Peran               |
 |---------------------|--------------------------|--------------|---------------------|
-|    <img src="https://cultofthepartyparrot.com/parrots/hd/laptop_parrot.gif" width="30" height="30"/>    | **Husein Zidan**         | 4522210012   | Arsitek Software    |
+|    <img src="https://cultofthepartyparrot.com/parrots/hd/laptop_parrot.gif" width="30" height="30"/>    | **Husein Zidan**         | 4522210012   | Architecture Software    |
 |    <img src="https://cultofthepartyparrot.com/parrots/hd/spinningparrot.gif" width="30" height="30"/>    | **Zahra Jane Arnecia**   | 4522210028   | Frontend Engineer   |
 |    <img src="https://cultofthepartyparrot.com/parrots/hd/60fpsparrot.gif" width="30" height="30"/>    | **Faathir Akbar Nugroho**| 4522210033   | Backend Engineer    |
 
 ## Fitur Admin
 
 - Register : digunakan untuk membuat akun
-- login/logut : digunkan untuk mengakses & logut aplikasi web capsswing
+- login/logout : digunkan untuk mengakses & logut aplikasi web capsswing
 - Create : digunakan untuk upload,edit,hapus tiket) 
 - Pesanan Pelanggan : digunakan untuk melihat pesanan tiket pelanggan
 - Transaksi : digunkaan untuk konfirmasi pesanan pelanggan (konfirmasi  pesanan selesai)
@@ -37,7 +37,7 @@ Proyek ini adalah Tugas Besar untuk mata kuliah **Pemrograman Berbasis Web** yan
 ## Fitur Konsumen
 
 - Register : Digunakan untuk membuat akun
-- login/logut : Digunkan untuk mengakses & logut aplikasi web capsswing
+- login/logout : Digunkan untuk mengakses & logut aplikasi web capsswing
 - Beli Tiket : Dapat digunakan untuk sebagai laman pembeian tiket Ekonomi, business class
 - Jadwal Penerbangan : Digunakan untuk melihat jadwal penerbangan pelanggan
 - Transaksi : Digunakan untuk proses transaksi/pembayaran
