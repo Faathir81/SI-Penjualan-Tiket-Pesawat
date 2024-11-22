@@ -21,7 +21,7 @@
 
                     <!-- Nama Lengkap -->
                     <div class="mb-4">
-                        <label for="name" class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
+                        <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
                         <input 
                             type="text" 
                             name="name" 
