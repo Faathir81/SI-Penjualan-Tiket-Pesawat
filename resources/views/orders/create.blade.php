@@ -45,7 +45,7 @@
 
                     <!-- Nomor Telepon -->
                     <div class="mb-4">
-                        <label for="phone" class="block text-sm font-medium text-gray-700">Nomor Telepon</label>
+                        <label for="phone" class="block text-sm font-medium text-gray-700">Call Number</label>
                         <input 
                             type="text" 
                             name="phone" 
