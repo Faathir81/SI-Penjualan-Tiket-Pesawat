@@ -42,6 +42,10 @@
                         </x-dropdown-link>
 
                         @if(auth()->check() && auth()->user()->usertype === 'user')
+                        <x-dropdown-link :href="route('orders.myTicket')">
+                            {{ __('myTicket') }}
+                        </x-dropdown-link>
+
                         <x-dropdown-link :href="route('orders.history')">
                             {{ __('History') }}
                         </x-dropdown-link>
@@ -95,6 +99,16 @@
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
+
+                @if(auth()->check() && auth()->user()->usertype === 'user')
+                <x-responsive-nav-link :href="route('orders.myTicket')">
+                    {{ __('myTicket') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="route('orders.history')">
+                    {{ __('History') }}
+                </x-responsive-nav-link>
+                @endif
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">

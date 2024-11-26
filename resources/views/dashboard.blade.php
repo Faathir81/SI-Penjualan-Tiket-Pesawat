@@ -47,17 +47,9 @@
                                 class="px-4 py-2 border border-gray-500 text-gray-500 rounded-md shadow hover:bg-indigo-500 hover:text-white hover:border-indigo-500 focus:outline-none text-center">
                                 Tampilkan Semua
                             </a>
-
-
                         </div>
-
-
-
-
                     </form>
                 </div>
-
-
 
                 <!-- Daftar Tiket -->
                 <h2 class="text-lg font-semibold text-gray-800 mb-4">Daftar Tiket</h2>

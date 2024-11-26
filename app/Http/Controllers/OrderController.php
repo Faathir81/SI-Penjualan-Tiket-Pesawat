@@ -133,6 +133,23 @@ class OrderController extends Controller
         return view('orders.ticket', ['order' => $order]);
     }
 
+    public function myTicket()
+    {
+        // Dapatkan waktu sekarang
+        $currentTime = now();
+
+        // Ambil semua tiket milik user yang belum kedaluwarsa
+        $tickets = Order::where('user_id', Auth::id())
+            ->join('products', 'orders.product_id', '=', 'products.id') // Gabungkan tabel orders dan products
+            ->where('products.departure_time', '>=', $currentTime) // Filter berdasarkan waktu
+            ->orderBy('products.departure_time', 'asc') // Urutkan berdasarkan waktu keberangkatan
+            ->select('orders.*') // Pastikan hanya memilih kolom dari tabel orders
+            ->with('product') // Muat relasi product untuk setiap order
+            ->get();
+
+        return view('orders.my-ticket', ['tickets' => $tickets]);
+    }
+
     public function userHistory()
     {
         // Ambil semua pesanan berdasarkan user yang login

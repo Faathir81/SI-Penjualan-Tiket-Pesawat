@@ -21,6 +21,11 @@ class Product extends Model
         'id_user',
     ];
 
+    protected $casts = [
+        'departure_time' => 'datetime',
+        'arrival_time' => 'datetime',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class, 'id_user');

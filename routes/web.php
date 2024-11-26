@@ -34,6 +34,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/ticket/{order}', [OrderController::class, 'showTicketDetail'])->name('ticket.detail');
 
     Route::get('/ticket/view/{order}', [OrderController::class, 'viewTicket'])->name('ticket.view');
+
+    Route::get('/my-tickets', [OrderController::class, 'myTicket'])->name('orders.myTicket');
 });
 
 Route::middleware('auth')->group(function () {
