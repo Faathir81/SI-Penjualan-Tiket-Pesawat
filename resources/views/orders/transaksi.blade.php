@@ -16,8 +16,12 @@
                 <p><strong>Email:</strong> {{ $order->email }}</p>
                 <p><strong>Nomor Telepon:</strong> {{ $order->phone }}</p>
                 <p><strong>Jumlah Tiket:</strong> {{ $order->quantity }}</p>
-                <p><strong>Total Harga:</strong> Rp{{ number_format($order->total_price) }}</p>
                 <p><strong>Tanggal Pemesanan:</strong> {{ $order->created_at->format('d M Y, H:i') }}</p>
+
+                <hr class="my-5">
+
+                <p><strong>Total Harga:</strong> Rp{{ number_format($order->total_price) }}</p>
+
 
                 <!-- Pesan Error -->
                 @if ($errors->any())

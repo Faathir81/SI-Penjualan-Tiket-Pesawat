@@ -86,7 +86,6 @@ class OrderController extends Controller
         ]);
     }
 
-    // Memproses transaksi (contoh: pembayaran uang tunai)
     public function processtransaksi(Request $request)
     {
         $request->validate([
@@ -97,15 +96,41 @@ class OrderController extends Controller
         $order = Order::findOrFail($request->order_id);
         $totalPrice = $order->total_price;
 
-        // Validasi jumlah uang
         if ($request->amount < $totalPrice) {
             return back()->withErrors(['amount' => 'Jumlah uang kurang dari total harga.']);
         } elseif ($request->amount > $totalPrice) {
             return back()->withErrors(['amount' => 'Jumlah uang melebihi total harga.']);
         }
 
-        // Proses pembayaran berhasil
-        return redirect()->route('dashboard')->with('success', 'Pembayaran berhasil! Terima kasih atas pesanan Anda.');
+        // Simpan status pembayaran lunas
+        $order->update(['status' => 'paid']);
+
+        // Redirect ke halaman detail tiket
+        return redirect()->route('ticket.detail', $order->id)
+            ->with('success', 'Pembayaran berhasil! Berikut detail tiket Anda.');
+    }
+
+    // Menampilkan detail tiket setelah pembayaran
+    public function showTicketDetail(Order $order)
+    {
+        // Pastikan user hanya bisa melihat tiketnya sendiri
+        if ($order->user_id !== Auth::id()) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        return view('orders.ticket-detail', [
+            'order' => $order,
+        ]);
+    }
+
+    public function viewTicket(Order $order)
+    {
+        // Pastikan user hanya bisa melihat tiket miliknya
+        if ($order->user_id !== Auth::id()) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        return view('orders.ticket', ['order' => $order]);
     }
 
     public function userHistory()

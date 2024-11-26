@@ -30,6 +30,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/transaksi', [OrderController::class, 'processtransaksi'])->name('transaksi.process');
 
     Route::get('/history', [OrderController::class, 'userHistory'])->name('orders.history');
+
+    Route::get('/ticket/{order}', [OrderController::class, 'showTicketDetail'])->name('ticket.detail');
+
+    Route::get('/ticket/view/{order}', [OrderController::class, 'viewTicket'])->name('ticket.view');
 });
 
 Route::middleware('auth')->group(function () {
