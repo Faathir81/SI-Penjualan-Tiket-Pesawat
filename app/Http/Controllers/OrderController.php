@@ -107,4 +107,13 @@ class OrderController extends Controller
         // Proses pembayaran berhasil
         return redirect()->route('dashboard')->with('success', 'Pembayaran berhasil! Terima kasih atas pesanan Anda.');
     }
+
+    public function userHistory()
+    {
+        // Ambil semua pesanan berdasarkan user yang login
+        $orders = Order::where('user_id', Auth::id())->with('product')->orderBy('created_at', 'desc')->get();
+
+        // Return view dengan data pesanan
+        return view('orders.history', ['orders' => $orders]);
+    }
 }

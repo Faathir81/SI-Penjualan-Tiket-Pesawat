@@ -41,6 +41,12 @@
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
+                        @if(auth()->check() && auth()->user()->usertype === 'user')
+                        <x-dropdown-link :href="route('orders.history')">
+                            {{ __('History') }}
+                        </x-dropdown-link>
+                        @endif
+
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

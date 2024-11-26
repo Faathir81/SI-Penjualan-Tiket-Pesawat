@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Http\Controllers;
 
@@ -9,10 +9,14 @@ class UserController extends Controller
 {
     public function showDashboard(Request $request)
     {
-        // Mendapatkan semua produk dengan filter keberangkatan jika ada
-        $products = Product::getFilteredProducts($request->input('departure_location'));
+        // Ambil filter dari request
+        $departureLocation = $request->input('departure_location');
+        $arrivalLocation = $request->input('arrival_location');
 
-        // Menampilkan view dashboard dan mengirim data produk
+        // Dapatkan produk yang sesuai dengan filter
+        $products = Product::getFilteredProducts($departureLocation, $arrivalLocation);
+
+        // Tampilkan view dashboard dengan data produk
         return view('dashboard', compact('products'));
     }
 }

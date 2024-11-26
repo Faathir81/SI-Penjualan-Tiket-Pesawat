@@ -14,12 +14,11 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
 </head>
 
 <body class="font-sans antialiased">
     <div class="min-h-screen bg-gray-100">
+        <!-- Navigation Bar -->
         @include('layouts.navigation')
 
         <!-- Page Heading -->

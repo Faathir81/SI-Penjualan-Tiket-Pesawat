@@ -27,10 +27,16 @@ class Product extends Model
     }
 
     // app/Models/Product.php
-    public static function getFilteredProducts($departureLocation = null)
+    public static function getFilteredProducts($departureLocation = null, $arrivalLocation = null)
     {
-        return self::when($departureLocation, function ($query, $departureLocation) {
-            $query->where('departure_location', 'like', '%' . $departureLocation . '%');
-        })->orderBy('id', 'desc')->get();
+        return self::query()
+            ->when($departureLocation, function ($query, $departureLocation) {
+                $query->where('departure_location', 'like', '%' . $departureLocation . '%');
+            })
+            ->when($arrivalLocation, function ($query, $arrivalLocation) {
+                $query->where('arrival_location', 'like', '%' . $arrivalLocation . '%');
+            })
+            ->orderBy('id', 'desc')
+            ->get();
     }
 }

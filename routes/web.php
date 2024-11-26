@@ -18,9 +18,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', [UserController::class, 'showDashboard'])
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+// Kelompok Rute untuk User
+Route::middleware(['auth', 'verified'])->group(function () {
+    // Dashboard User
+    Route::get('/dashboard', [UserController::class, 'showDashboard'])->name('dashboard');
+
+    // Rute Pemesanan dan Transaksi
+    Route::get('/order/{productId}', [OrderController::class, 'create'])->name('orders.create');
+    Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
+    Route::get('/transaksi/{order}', [OrderController::class, 'showtransaksiForm'])->name('transaction.show');
+    Route::post('/transaksi', [OrderController::class, 'processtransaksi'])->name('transaksi.process');
+
+    Route::get('/history', [OrderController::class, 'userHistory'])->name('orders.history');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -36,16 +46,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/products/edit/{id}', [ProductController::class, 'edit'])->name('admin/products/edit');
     Route::put('/admin/products/edit/{id}', [ProductController::class, 'update'])->name('admin/products/update');
     Route::get('/admin/products/delete/{id}', [ProductController::class, 'delete'])->name('admin/products/delete');
-});
-
-Route::middleware(['auth'])->group(function () {
-    // Route untuk pemesanan tiket
-    Route::get('/order/{productId}', [OrderController::class, 'create'])->name('orders.create');
-    Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
-
-    // Route untuk transaksi
-    Route::get('/transaksi/{order}', [OrderController::class, 'showtransaksiForm'])->name('transaction.show');
-    Route::post('/transaksi', [OrderController::class, 'processtransaksi'])->name('transaksi.process');
 });
 
 
