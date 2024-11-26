@@ -14,9 +14,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
 
 // Kelompok Rute untuk User
 Route::middleware(['auth', 'verified'])->group(function () {

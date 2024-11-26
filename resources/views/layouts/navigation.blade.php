@@ -5,18 +5,21 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ Auth::user()->usertype === 'admin' ? route('admin/dashboard') : route('dashboard') }}">
+                    <a
+                        href="{{ auth()->check() && auth()->user()->usertype === 'admin' ? route('admin/dashboard') : route('dashboard') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
                 </div>
 
-
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <h1 class="fw-bolder">LARAVEL</h1>
+                    <x-nav-link href="{{route('welcome')}}" :active="request()->routeIs('dashboard')">
+                        {{__('Welcome')}}
+                    </x-nav-link>
                 </div>
             </div>
 
+            @auth
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
@@ -63,6 +66,16 @@
                     </x-slot>
                 </x-dropdown>
             </div>
+            @else
+            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <x-nav-link href="{{route('login')}}">
+                    {{__('Login')}}
+                </x-nav-link>
+                <x-nav-link href="{{route('register')}}">
+                    {{__('Register')}}
+                </x-nav-link>
+            </div>
+            @endauth
 
             <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">
@@ -90,6 +103,7 @@
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
+            @auth
             <div class="px-4">
                 <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
@@ -120,6 +134,7 @@
                     </x-responsive-nav-link>
                 </form>
             </div>
+            @endauth
         </div>
     </div>
 </nav>
