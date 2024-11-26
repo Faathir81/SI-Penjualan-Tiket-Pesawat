@@ -11,12 +11,13 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
-            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade'); // Optional for authentication
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
             $table->string('name');
             $table->string('email');
             $table->string('phone');
             $table->integer('quantity');
             $table->integer('total_price');
+            $table->integer('seat');
             $table->timestamps();
         });
     }
@@ -26,4 +27,3 @@ return new class extends Migration
         Schema::dropIfExists('orders');
     }
 };
-

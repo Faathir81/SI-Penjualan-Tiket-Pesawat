@@ -19,8 +19,8 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', [UserController::class, 'showDashboard'])
-     ->middleware(['auth', 'verified'])
-     ->name('dashboard');
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -42,5 +42,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/order/{productId}', [OrderController::class, 'create'])->name('orders.create');
     Route::post('/orders', [OrderController::class, 'store'])->name('orders.store')->middleware('auth');
 });
+
+Route::middleware('auth')->group(function () {
+    Route::get('/transaction', [OrderController::class, 'showTransactionForm'])->name('transaction.form');
+    Route::post('/transaction', [OrderController::class, 'processTransaction'])->name('transaction.process');
+});
+
 
 require __DIR__ . '/auth.php';

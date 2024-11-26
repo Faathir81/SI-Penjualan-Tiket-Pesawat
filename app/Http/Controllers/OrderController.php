@@ -11,20 +11,19 @@ class OrderController extends Controller
 {
     public function create($productId)
     {
-        $userId = Auth::id();
+        $product = Product::findOrFail($productId);
 
-        // Cek apakah pengguna sudah memesan tiket untuk produk ini
-        $existingOrder = Order::where('user_id', $userId)->where('product_id', $productId)->first();
-
-        if ($existingOrder) {
-            return redirect()->back()->with('error', 'Anda sudah memesan tiket untuk produk ini.');
-        }
+        // Ambil daftar kursi yang sudah dipesan untuk produk ini
+        $occupiedSeats = Order::where('product_id', $productId)->pluck('seat')->toArray();
 
         return view('orders.create', [
-            'product' => Product::findOrFail($productId), // Sesuaikan dengan model produk Anda
-            'ticketQuantity' => 1 // Hanya 1 tiket
+            'product' => $product,
+            'ticketQuantity' => 1,
+            'occupiedSeats' => $occupiedSeats, // Kirim data kursi yang sudah dipesan ke view
         ]);
     }
+
+
 
     public function store(Request $request)
     {
@@ -33,6 +32,7 @@ class OrderController extends Controller
             'email' => 'required|email',
             'phone' => 'required',
             'quantity' => 'required|integer|min:1',
+            'seat' => 'required|integer|min:1|max:25',
         ]);
 
         $product = Product::findOrFail($request->product_id);
@@ -41,18 +41,49 @@ class OrderController extends Controller
             return back()->withErrors(['quantity' => 'Jumlah tiket melebihi kuota yang tersedia.']);
         }
 
+        // Periksa apakah kursi sudah dipesan
+        $seatTaken = Order::where('product_id', $product->id)
+            ->where('seat', $request->seat)
+            ->exists();
+
+        if ($seatTaken) {
+            return back()->withErrors(['seat' => 'Nomor kursi sudah dipesan. Silakan pilih kursi lain.']);
+        }
+
+        // Buat pesanan baru
         $order = Order::create([
             'product_id' => $product->id,
+            'user_id' => Auth::id(), // Pastikan user_id disimpan
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
             'quantity' => $request->quantity,
+            'seat' => $request->seat,
             'total_price' => $product->price * $request->quantity,
         ]);
 
-        // Update product quota
+        // Kurangi kuota tiket
         $product->decrement('quota_tiket', $request->quantity);
 
         return redirect()->route('dashboard')->with('success', 'Pemesanan berhasil!');
+    }
+
+    public function showTransactionForm()
+    {
+        return view('orders.formtransaksi');
+    }
+
+    public function processTransaction(Request $request)
+    {
+        $request->validate([
+            'amount' => 'required|integer|min:1', // Validasi input uang
+        ]);
+
+        $amount = $request->input('amount');
+
+        // Anda dapat menambahkan logika tambahan seperti mencatat transaksi di database
+        // atau menghitung sisa uang setelah pembelian tiket, jika relevan.
+
+        return redirect()->route('dashboard')->with('success', "Transaksi berhasil! Anda telah memasukkan uang sebesar Rp{$amount}.");
     }
 }
