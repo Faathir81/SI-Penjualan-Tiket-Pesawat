@@ -1,12 +1,11 @@
 <x-app-layout>
-
     <div class="py-12">
         <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg px-6 py-8">
 
                 <!-- Form Pencarian -->
-                <div class="mb-6 max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <form method="GET" action="{{ route('dashboard') }}" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="mb-6 max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-center">
+                    <form method="GET" action="{{ route('welcome') }}" class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <!-- Lokasi Keberangkatan -->
                         <div>
                             <label for="departure_location" class="block text-sm font-medium text-gray-700">
@@ -36,17 +35,15 @@
                                 class="px-4 py-2 bg-indigo-500 text-white rounded-md shadow hover:bg-indigo-600 focus:outline-none">
                                 Cari
                             </button>
-
-                            <!-- Tombol Menampilkan Seluruh -->
-                            <a href="{{ route('dashboard') }}"
-                                class="px-4 py-2 border border-gray-500 text-gray-500 rounded-md shadow hover:bg-indigo-500 hover:text-white hover:border-indigo-500 focus:outline-none text-center">
-                                Tampilkan Semua
-                            </a>
                         </div>
                     </form>
                 </div>
 
                 <!-- Daftar Tiket -->
+                @if(request()->has('departure_location') || request()->has('arrival_location'))
+                @if ($products->isEmpty())
+                <p class="text-gray-500">Tidak ada tiket yang ditemukan untuk pencarian Anda.</p>
+                @else
                 <h2 class="text-lg font-semibold text-gray-800 mb-4">Daftar Tiket</h2>
                 <div class="overflow-x-auto">
                     <table class="min-w-full border-collapse border border-gray-200 bg-gray-50 shadow-md rounded-lg">
@@ -100,8 +97,8 @@
                         </tbody>
                     </table>
                 </div>
-
-
+                @endif
+                @endif
             </div>
         </div>
     </div>

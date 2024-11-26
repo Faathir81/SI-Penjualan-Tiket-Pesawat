@@ -11,9 +11,23 @@ class HomeController extends Controller
     {
         return view('admin.dashboard');
     }
-    public function welcome()
+    public function welcome(Request $request)
     {
-        $products = Product::all();
+        $departure = $request->input('departure_location');
+        $arrival = $request->input('arrival_location');
+
+        $products = Product::query();
+
+        if ($departure) {
+            $products->where('departure_location', 'like', '%' . $departure . '%');
+        }
+
+        if ($arrival) {
+            $products->where('arrival_location', 'like', '%' . $arrival . '%');
+        }
+
+        $products = $products->get();
+
 
         return view('welcome', compact('products'));
     }
