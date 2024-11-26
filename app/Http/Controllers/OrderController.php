@@ -9,39 +9,42 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
+    // Menampilkan halaman pemesanan tiket
     public function create($productId)
     {
+        // Mendapatkan detail produk berdasarkan ID
         $product = Product::findOrFail($productId);
 
-        // Ambil daftar kursi yang sudah dipesan untuk produk ini
+        // Mendapatkan daftar kursi yang sudah dipesan
         $occupiedSeats = Order::where('product_id', $productId)->pluck('seat')->toArray();
 
         return view('orders.create', [
             'product' => $product,
-            'ticketQuantity' => 1,
-            'occupiedSeats' => $occupiedSeats, // Kirim data kursi yang sudah dipesan ke view
+            'occupiedSeats' => $occupiedSeats,
         ]);
     }
 
-
-
+    // Menyimpan data pemesanan tiket
     public function store(Request $request)
     {
+        // Validasi data input
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|string|max:255',
             'email' => 'required|email',
-            'phone' => 'required',
+            'phone' => 'required|string|max:15',
             'quantity' => 'required|integer|min:1',
             'seat' => 'required|integer|min:1|max:25',
         ]);
 
+        // Mendapatkan produk berdasarkan ID
         $product = Product::findOrFail($request->product_id);
 
+        // Validasi kuota tiket
         if ($request->quantity > $product->quota_tiket) {
             return back()->withErrors(['quantity' => 'Jumlah tiket melebihi kuota yang tersedia.']);
         }
 
-        // Periksa apakah kursi sudah dipesan
+        // Validasi apakah kursi sudah dipesan
         $seatTaken = Order::where('product_id', $product->id)
             ->where('seat', $request->seat)
             ->exists();
@@ -50,10 +53,10 @@ class OrderController extends Controller
             return back()->withErrors(['seat' => 'Nomor kursi sudah dipesan. Silakan pilih kursi lain.']);
         }
 
-        // Buat pesanan baru
+        // Menyimpan pesanan ke database
         $order = Order::create([
             'product_id' => $product->id,
-            'user_id' => Auth::id(), // Pastikan user_id disimpan
+            'user_id' => Auth::id(),
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
@@ -62,28 +65,46 @@ class OrderController extends Controller
             'total_price' => $product->price * $request->quantity,
         ]);
 
-        // Kurangi kuota tiket
+        // Mengurangi kuota tiket
         $product->decrement('quota_tiket', $request->quantity);
 
-        return redirect()->route('dashboard')->with('success', 'Pemesanan berhasil!');
+        // Redirect ke halaman transaksi
+        return redirect()->route('transaction.show', $order->id)
+            ->with('success', 'Pemesanan berhasil! Lihat detail transaksi Anda.');
     }
 
-    public function showTransactionForm()
+    // Menampilkan detail transaksi berdasarkan pesanan
+    public function showtransaksiForm(Order $order)
     {
-        return view('orders.formtransaksi');
+        // Memastikan user hanya bisa melihat transaksinya sendiri
+        if ($order->user_id !== Auth::id()) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        return view('orders.transaksi', [
+            'order' => $order,
+        ]);
     }
 
-    public function processTransaction(Request $request)
+    // Memproses transaksi (contoh: pembayaran uang tunai)
+    public function processtransaksi(Request $request)
     {
         $request->validate([
-            'amount' => 'required|integer|min:1', // Validasi input uang
+            'order_id' => 'required|exists:orders,id',
+            'amount' => 'required|integer|min:1',
         ]);
 
-        $amount = $request->input('amount');
+        $order = Order::findOrFail($request->order_id);
+        $totalPrice = $order->total_price;
 
-        // Anda dapat menambahkan logika tambahan seperti mencatat transaksi di database
-        // atau menghitung sisa uang setelah pembelian tiket, jika relevan.
+        // Validasi jumlah uang
+        if ($request->amount < $totalPrice) {
+            return back()->withErrors(['amount' => 'Jumlah uang kurang dari total harga.']);
+        } elseif ($request->amount > $totalPrice) {
+            return back()->withErrors(['amount' => 'Jumlah uang melebihi total harga.']);
+        }
 
-        return redirect()->route('dashboard')->with('success', "Transaksi berhasil! Anda telah memasukkan uang sebesar Rp{$amount}.");
+        // Proses pembayaran berhasil
+        return redirect()->route('dashboard')->with('success', 'Pembayaran berhasil! Terima kasih atas pesanan Anda.');
     }
 }

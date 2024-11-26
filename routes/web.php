@@ -39,13 +39,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
+    // Route untuk pemesanan tiket
     Route::get('/order/{productId}', [OrderController::class, 'create'])->name('orders.create');
-    Route::post('/orders', [OrderController::class, 'store'])->name('orders.store')->middleware('auth');
-});
+    Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/transaction', [OrderController::class, 'showTransactionForm'])->name('transaction.form');
-    Route::post('/transaction', [OrderController::class, 'processTransaction'])->name('transaction.process');
+    // Route untuk transaksi
+    Route::get('/transaksi/{order}', [OrderController::class, 'showtransaksiForm'])->name('transaction.show');
+    Route::post('/transaksi', [OrderController::class, 'processtransaksi'])->name('transaksi.process');
 });
 
 
