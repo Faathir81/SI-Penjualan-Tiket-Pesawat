@@ -30,8 +30,6 @@ class Product extends Model
     {
         return $this->belongsTo(User::class, 'id_user');
     }
-
-    // app/Models/Product.php
     public static function getFilteredProducts($departureLocation = null, $arrivalLocation = null)
     {
         return self::query()

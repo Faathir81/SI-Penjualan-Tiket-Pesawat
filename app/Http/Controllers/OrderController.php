@@ -135,16 +135,14 @@ class OrderController extends Controller
 
     public function myTicket()
     {
-        // Dapatkan waktu sekarang
         $currentTime = now();
 
-        // Ambil semua tiket milik user yang belum kedaluwarsa
         $tickets = Order::where('user_id', Auth::id())
-            ->join('products', 'orders.product_id', '=', 'products.id') // Gabungkan tabel orders dan products
-            ->where('products.departure_time', '>=', $currentTime) // Filter berdasarkan waktu
-            ->orderBy('products.departure_time', 'asc') // Urutkan berdasarkan waktu keberangkatan
-            ->select('orders.*') // Pastikan hanya memilih kolom dari tabel orders
-            ->with('product') // Muat relasi product untuk setiap order
+            ->join('products', 'orders.product_id', '=', 'products.id')
+            ->where('products.departure_time', '>=', $currentTime)
+            ->orderBy('products.departure_time', 'asc')
+            ->select('orders.*')
+            ->with('product')
             ->get();
 
         return view('orders.my-ticket', ['tickets' => $tickets]);
@@ -152,10 +150,8 @@ class OrderController extends Controller
 
     public function userHistory()
     {
-        // Ambil semua pesanan berdasarkan user yang login
         $orders = Order::where('user_id', Auth::id())->with('product')->orderBy('created_at', 'desc')->get();
 
-        // Return view dengan data pesanan
         return view('orders.history', ['orders' => $orders]);
     }
 }

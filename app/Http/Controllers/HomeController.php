@@ -13,10 +13,8 @@ class HomeController extends Controller
     }
     public function welcome()
     {
-        // Ambil semua produk dari database
         $products = Product::all();
 
-        // Kirimkan data ke view
         return view('welcome', compact('products'));
     }
 }
