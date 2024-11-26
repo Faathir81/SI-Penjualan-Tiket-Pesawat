@@ -6,67 +6,82 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <h1 class="mb-0">List Product</h1>
-                        <a href="{{ route('admin/products/create') }}" class="btn btn-primary">Add Product</a>
+                    <!-- Header Section -->
+                    <div class="flex items-center justify-between mb-6">
+                        <h1 class="text-2xl font-bold">List Product</h1>
+                        <a href="{{ route('admin/products/create') }}"
+                            class="px-4 py-2 bg-indigo-500 text-white rounded-md shadow hover:bg-indigo-600 focus:outline-none">
+                            Add Product
+                        </a>
                     </div>
-                    <hr />
+                    <hr class="mb-6" />
 
+                    <!-- Success Message -->
                     @if(Session::has('success'))
-                    <div class="alert alert-success" role="alert">
+                    <div class="bg-green-100 text-green-700 p-4 rounded-md mb-6">
                         {{ Session::get('success') }}
                     </div>
                     @endif
 
-                    <table class="table table-hover">
-                        <thead class="table-primary">
-                            <tr>
-                                <th>No.</th>
-                                <th>Airline</th>
-                                <th>Category</th>
-                                <th>Departure Location</th>
-                                <th>Arrival Location</th>
-                                <th>Departure Time</th>
-                                <th>Arrival Time</th>
-                                <th>Price</th>
-                                <th>Unit</th>
-                                <th>Change</th>
-                            </tr>
-                        </thead>
+                    <!-- Product Table -->
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full border border-gray-300 bg-gray-50 shadow-md rounded-lg">
+                            <thead>
+                                <tr class="bg-indigo-500 text-white">
+                                    <th class="px-4 py-3 text-left border">No.</th>
+                                    <th class="px-4 py-3 text-left border">Airline</th>
+                                    <th class="px-4 py-3 text-left border">Category</th>
+                                    <th class="px-4 py-3 text-left border">Departure Location</th>
+                                    <th class="px-4 py-3 text-left border">Arrival Location</th>
+                                    <th class="px-4 py-3 text-left border">Departure Time</th>
+                                    <th class="px-4 py-3 text-left border">Arrival Time</th>
+                                    <th class="px-4 py-3 text-left border">Price</th>
+                                    <th class="px-4 py-3 text-left border">Unit</th>
+                                    <th class="px-4 py-3 text-left border">Change</th>
+                                </tr>
+                            </thead>
 
-                        <tbody>
-                            @forelse ($products as $product)
-                            @if(Auth::user()->usertype == 'admin' && Auth::id() == $product->id_user)
-                            <tr>
-                                <td class="align-middle">{{ $loop->iteration }}</td>
-                                <td class="align-middle">{{ $product->airline }}</td>
-                                <td class="align-middle">{{ $product->category }}</td>
-                                <td class="align-middle">{{ $product->departure_location }}</td>
-                                <td class="align-middle">{{ $product->arrival_location }}</td>
-                                <td class="align-middle">{{ $product->departure_time }}</td>
-                                <td class="align-middle">{{ $product->arrival_time }}</td>
-                                <td class="align-middle">{{ $product->price }}</td>
-                                <td class="align-middle">{{ $product->quota_tiket }}</td>
-                                <td class="align-middle">
-                                    <div class="btn-group" role="group" aria-label="Basic example">
-                                        <a href="{{ route('admin/products/edit', ['id' => $product->id]) }}"
-                                            class="btn btn-secondary">Edit</a>
-                                        <a href="{{ route('admin/products/delete', ['id' => $product->id]) }}"
-                                            class="btn btn-danger">Delete</a>
-                                    </div>
-                                </td>
-                            </tr>
-                            @endif
-                            @empty
-                            <tr>
-                                <td class="text-center" colspan="9">Product not found</td>
-                            </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+                            <tbody>
+                                @forelse ($products as $product)
+                                @if(Auth::user()->usertype == 'admin' && Auth::id() == $product->id_user)
+                                <tr class="hover:bg-gray-100">
+                                    <td class="px-4 py-3 border">{{ $loop->iteration }}</td>
+                                    <td class="px-4 py-3 border">{{ $product->airline }}</td>
+                                    <td class="px-4 py-3 border">{{ $product->category }}</td>
+                                    <td class="px-4 py-3 border">{{ $product->departure_location }}</td>
+                                    <td class="px-4 py-3 border">{{ $product->arrival_location }}</td>
+                                    <td class="px-4 py-3 border">{{ $product->departure_time }}</td>
+                                    <td class="px-4 py-3 border">{{ $product->arrival_time }}</td>
+                                    <td class="px-4 py-3 border">Rp {{ number_format($product->price, 0, ',', '.') }}
+                                    </td>
+                                    <td class="px-4 py-3 border">{{ $product->quota_tiket }}</td>
+                                    <td class="px-4 py-3 border">
+                                        <div class="flex space-x-2">
+                                            <a href="{{ route('admin/products/edit', ['id' => $product->id]) }}"
+                                                class="px-3 py-1 bg-yellow-500 text-white rounded-md shadow hover:bg-yellow-600 focus:outline-none">
+                                                Edit
+                                            </a>
+                                            <a href="{{ route('admin/products/delete', ['id' => $product->id]) }}"
+                                                class="px-3 py-1 bg-red-500 text-white rounded-md shadow hover:bg-red-600 focus:outline-none">
+                                                Delete
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endif
+                                @empty
+                                <tr>
+                                    <td colspan="10" class="text-center px-4 py-3 text-gray-500">
+                                        Product not found.
+                                    </td>
+                                </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
