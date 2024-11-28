@@ -44,7 +44,6 @@
                 </div>
 
                 <!-- Daftar Tiket -->
-                @if(request()->has('departure_location') || request()->has('arrival_location'))
                 @if ($products->isEmpty())
                 <p class="text-gray-500">Tidak ada tiket yang ditemukan untuk pencarian Anda.</p>
                 @else
@@ -98,7 +97,7 @@
                     </table>
                 </div>
                 @endif
-                @endif
+
             </div>
         </div>
     </div>

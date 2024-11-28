@@ -24,6 +24,7 @@ class UserController extends Controller
                 'arrival_location' => $arrivalLocation,
             ]);
         }
+        $products = Product::getFilteredProducts($departureLocation, $arrivalLocation);
 
         return view('dashboard', compact('products'));
     }

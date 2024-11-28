@@ -13,23 +13,42 @@
 
                 <!-- Navigation Links -->
                 @auth
+                @if (auth()->user()->usertype === 'admin')
+                <!-- Menu untuk Admin -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{route('dashboard')}}" :active="request()->routeIs('dashboard')">
-                        {{__('Dashboard')}}
+                    <x-nav-link href="{{ route('admin/dashboard') }}" :active="request()->routeIs('admin/dashboard')">
+                        {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+
                 @else
+                <!-- Menu untuk User -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{route('welcome')}}" :active="request()->routeIs('dashboard')">
-                        {{__('Welcome')}}
+                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                        {{ __('Dashboard') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="{{ route('tickets') }}" :active="request()->routeIs('tickets')">
+                        {{ __('Tickets') }}
+                    </x-nav-link>
+                </div>
+                @endif
+                @else
+
+                <!-- Menu untuk Pengguna yang Tidak Login -->
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="{{ route('welcome') }}" :active="request()->routeIs('welcome')">
+                        {{ __('Welcome') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="{{ route('tickets') }}" :active="request()->routeIs('tickets')">
+                        {{ __('Tickets') }}
                     </x-nav-link>
                 </div>
                 @endauth
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{route('tickets')}}" :active="request()->routeIs('tickets')">
-                        {{__('Tickets')}}
-                    </x-nav-link>
-                </div>
+
 
             </div>
 
@@ -110,16 +129,42 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            @auth
             <!-- Dashboard Link -->
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+            @auth
+            @if (auth()->user()->usertype === 'admin')
+            <!-- Menu untuk Admin -->
+
+            <x-responsive-nav-link href="{{ route('admin/dashboard') }}"
+                :active="request()->routeIs('admin/dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+
+
             @else
-            <!-- Welcome Link -->
-            <x-responsive-nav-link :href="route('welcome')" :active="request()->routeIs('welcome')">
+            <!-- Menu untuk User -->
+
+            <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+
+
+            <x-responsive-nav-link href="{{ route('tickets') }}" :active="request()->routeIs('tickets')">
+                {{ __('Tickets') }}
+            </x-responsive-nav-link>
+
+            @endif
+            @else
+
+            <!-- Menu untuk Pengguna yang Tidak Login -->
+
+            <x-responsive-nav-link href="{{ route('welcome') }}" :active="request()->routeIs('welcome')">
                 {{ __('Welcome') }}
             </x-responsive-nav-link>
+
+            <x-responsive-nav-link href="{{ route('tickets') }}" :active="request()->routeIs('tickets')">
+                {{ __('Tickets') }}
+            </x-responsive-nav-link>
+
             @endauth
         </div>
 

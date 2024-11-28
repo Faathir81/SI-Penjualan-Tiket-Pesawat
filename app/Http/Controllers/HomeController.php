@@ -13,21 +13,16 @@ class HomeController extends Controller
     }
     public function welcome(Request $request)
     {
-        $departure = $request->input('departure_location');
-        $arrival = $request->input('arrival_location');
+        $departureLocation = $request->input('departure_location');
+        $arrivalLocation = $request->input('arrival_location');
 
-        $products = Product::query();
-
-        if ($departure) {
-            $products->where('departure_location', 'like', '%' . $departure . '%');
+        if ($departureLocation || $arrivalLocation) {
+            return redirect()->route('tickets', [
+                'departure_location' => $departureLocation,
+                'arrival_location' => $arrivalLocation,
+            ]);
         }
-
-        if ($arrival) {
-            $products->where('arrival_location', 'like', '%' . $arrival . '%');
-        }
-
-        $products = $products->get();
-
+        $products = Product::getFilteredProducts($departureLocation, $arrivalLocation);
 
         return view('welcome', compact('products'));
     }
