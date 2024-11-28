@@ -15,6 +15,7 @@ use App\Http\Controllers\OrderController;
 
 
 Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
+Route::get('/tickets', [UserController::class, 'showTickets'])->name('tickets');
 
 // Kelompok Rute untuk User
 Route::middleware(['auth', 'verified'])->group(function () {

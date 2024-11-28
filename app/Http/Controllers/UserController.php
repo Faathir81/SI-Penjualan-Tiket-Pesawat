@@ -18,8 +18,30 @@ class UserController extends Controller
         $departureLocation = $request->input('departure_location');
         $arrivalLocation = $request->input('arrival_location');
 
-        $products = Product::getFilteredProducts($departureLocation, $arrivalLocation);
+        if ($departureLocation || $arrivalLocation) {
+            return redirect()->route('tickets', [
+                'departure_location' => $departureLocation,
+                'arrival_location' => $arrivalLocation,
+            ]);
+        }
 
         return view('dashboard', compact('products'));
+    }
+
+    public function showTickets(Request $request)
+    {
+        $departureLocation = $request->get('departure_location');
+        $arrivalLocation = $request->get('arrival_location');
+
+        $products = Product::query()
+            ->when($departureLocation, function ($query, $departureLocation) {
+                $query->where('departure_location', 'LIKE', "%$departureLocation%");
+            })
+            ->when($arrivalLocation, function ($query, $arrivalLocation) {
+                $query->where('arrival_location', 'LIKE', "%$arrivalLocation%");
+            })
+            ->get();
+
+        return view('tickets', compact('products'));
     }
 }
