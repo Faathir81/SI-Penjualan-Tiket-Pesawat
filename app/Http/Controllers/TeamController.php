@@ -37,6 +37,6 @@ class TeamController extends Controller
         $user->save();
 
         // Redirect ke team.index dengan pesan sukses
-        return redirect()->route('team.index')->with('success', 'User role updated successfully.');
+        return redirect()->route('team')->with('success', 'User role updated successfully.');
     }
 }
