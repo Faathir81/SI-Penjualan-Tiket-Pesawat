@@ -5,23 +5,31 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a
-                        href="{{ auth()->check() && auth()->user()->usertype === 'admin' ? route('admin/dashboard') : route('dashboard') }}">
+                    @auth
+                    @if (auth()->user()->usertype === 'user')
+                    <a href="{{ route('dashboard') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
+                    @elseif (auth()->user()->usertype === 'admin')
+                    <a href="{{ route('admin/dashboard') }}">
+                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                    </a>
+                    @else
+                    <a href="{{ route('team') }}">
+                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                    </a>
+                    @endif
+                    @else
+                    <a href="{{ route('welcome') }}">
+                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                    </a>
+                    @endauth
+
                 </div>
 
                 <!-- Navigation Links -->
                 @auth
-                @if (auth()->user()->usertype === 'admin')
-                <!-- Menu untuk Admin -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('admin/dashboard') }}" :active="request()->routeIs('admin/dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div>
-
-                @else
+                @if (auth()->user()->usertype === 'user')
                 <!-- Menu untuk User -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
@@ -33,9 +41,24 @@
                         {{ __('Tickets') }}
                     </x-nav-link>
                 </div>
-                @endif
-                @else
 
+                @elseif (auth()->user()->usertype === 'admin')
+                <!-- Menu untuk Admin -->
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="{{ route('admin/dashboard') }}" :active="request()->routeIs('admin/dashboard')">
+                        {{ __('Dashboard') }}
+                    </x-nav-link>
+                </div>
+                @else
+                <!-- Menu untuk Team -->
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="{{ route('team') }}" :active="request()->routeIs('team')">
+                        {{ __('Team Capsswing') }}
+                    </x-nav-link>
+                </div>
+                @endif
+
+                @else
                 <!-- Menu untuk Pengguna yang Tidak Login -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('welcome') }}" :active="request()->routeIs('welcome')">
@@ -48,8 +71,6 @@
                     </x-nav-link>
                 </div>
                 @endauth
-
-
             </div>
 
             @auth
@@ -131,30 +152,27 @@
         <div class="pt-2 pb-3 space-y-1">
             <!-- Dashboard Link -->
             @auth
-            @if (auth()->user()->usertype === 'admin')
-            <!-- Menu untuk Admin -->
-
+            @if (auth()->user()->usertype === 'user')
+            <!-- Menu untuk User -->
+            <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('tickets') }}" :active="request()->routeIs('tickets')">
+                {{ __('Tickets') }}
+            </x-responsive-nav-link>
+            @elseif(auth()->user()->usertype === 'admin')
+            <!-- Menu untuk User -->
             <x-responsive-nav-link href="{{ route('admin/dashboard') }}"
                 :active="request()->routeIs('admin/dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-
-
-            @else
+            @elseif(auth()->user()->usertype === 'teamIT')
             <!-- Menu untuk User -->
-
-            <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            <x-responsive-nav-link href="{{ route('team') }}" :active="request()->routeIs('team')">
+                {{ __('Team Capsswing') }}
             </x-responsive-nav-link>
 
-
-            <x-responsive-nav-link href="{{ route('tickets') }}" :active="request()->routeIs('tickets')">
-                {{ __('Tickets') }}
-            </x-responsive-nav-link>
-
-            @endif
             @else
-
             <!-- Menu untuk Pengguna yang Tidak Login -->
 
             <x-responsive-nav-link href="{{ route('welcome') }}" :active="request()->routeIs('welcome')">
@@ -164,7 +182,7 @@
             <x-responsive-nav-link href="{{ route('tickets') }}" :active="request()->routeIs('tickets')">
                 {{ __('Tickets') }}
             </x-responsive-nav-link>
-
+            @endif
             @endauth
         </div>
 

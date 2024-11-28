@@ -3,13 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Models\Product;
-use App\Models\Pesanan;
+use App\Http\Controllers\TeamController;
 use App\Http\Controllers\ProductController;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\PesananController;
-use App\Http\Controllers\TransaksiController;
-use App\Http\Controllers\CheckinController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 
@@ -53,5 +48,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/products/delete/{id}', [ProductController::class, 'delete'])->name('admin/products/delete');
 });
 
+Route::middleware(['auth', 'teamIT'])->group(function () {
+    Route::get('/team', [TeamController::class, 'index'])->name('team');
+    Route::post('/team/{user}/update-role', [TeamController::class, 'updateRole'])->name('team.update-role');
+});
 
 require __DIR__ . '/auth.php';
