@@ -2,7 +2,7 @@
     <div class="relative min-h-screen bg-gray-100">
         <!-- Background Image -->
         <img id="background" class="absolute inset-0 w-full h-full object-cover"
-            src="https://raw.githubusercontent.com/Faathir81/SI-Penjualan-Tiket-Pesawat/refs/heads/main/public/images/bg.png"
+            src="https://raw.githubusercontent.com/Faathir81/SI-Penjualan-Tiket-Pesawat/refs/heads/main/public/images/bg.webp"
             alt="Laravel background" />
 
         <!-- Main Content -->
