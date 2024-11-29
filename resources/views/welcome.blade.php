@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-home-layout>
     <div class="relative min-h-screen bg-gray-100">
         <!-- Background Image -->
         <img id="background" class="absolute inset-0 w-full h-full object-cover"
@@ -52,4 +52,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-app-home-layout>
