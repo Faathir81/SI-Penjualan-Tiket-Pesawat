@@ -21,19 +21,20 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex ">
                     @auth
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')"
-                        class="text-gray-100 hover:text-purple-500 active:text-white transition-colors duration-300 text-xl">
+                        class="!text-white hover:text-purple-500 active:text-white transition-colors duration-300 text-xl">
                         {{ __('Welcome') }}
                     </x-nav-link>
                     @endauth
                     @guest
                     <x-nav-link href="{{ route('welcome') }}" :active="request()->routeIs('welcome')"
-                        class="text-gray-100 hover:text-purple-500 active:text-white transition-colors duration-300 text-xl">
+                        class="!text-white hover:text-purple-500 active:text-white transition-colors duration-300 text-xl">
                         {{ __('Welcome') }}
                     </x-nav-link>
+
                     @endguest
 
                     <x-nav-link href="{{ route('tickets') }}" :active="request()->routeIs('tickets')"
-                        class="text-gray-100 hover:text-purple-500 active:text-white transition-colors duration-300 text-xl">
+                        class="!text-white hover:text-purple-500 active:text-white transition-colors duration-300 text-xl">
                         {{ __('Tickets') }}
                     </x-nav-link>
                 </div>
