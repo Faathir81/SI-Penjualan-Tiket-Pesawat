@@ -14,15 +14,17 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-            <div>
-                <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-                </a>
-            </div>
+    <body class="font-sans text-gray-900 bg-violet-950">
+        <!-- Wrapper untuk logo di kiri atas yang fix dan memiliki z-index lebih tinggi -->
+        <div class="fixed top-0 left-0 p-6 z-10">
+            <a href="/">
+                <x-application-logo class="w-12 h-12 fill-current text-white" />
+            </a>
+        </div>
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+        <!-- Bagian utama halaman dengan margin dan flex untuk memposisikan di tengah -->
+        <div class="flex flex-col items-center justify-center min-h-screen mt-24"> <!-- Menambahkan margin top untuk memberi ruang -->
+            <div class="w-full sm:max-w-md px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
                 {{ $slot }}
             </div>
         </div>
