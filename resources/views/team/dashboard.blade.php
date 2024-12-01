@@ -21,7 +21,6 @@
                             Search
                         </button>
                     </div>
-                    <!-- Error Message -->
                     @if ($errors->has('email'))
                     <div class="text-red-500 mt-2">
                         {{ $errors->first('email') }}
@@ -52,19 +51,22 @@
                         <tr class="hover:bg-gray-100 transition ease-in-out duration-150">
                             <td class="border border-gray-200 px-6 py-3">{{ $user->name }}</td>
                             <td class="border border-gray-200 px-6 py-3">{{ $user->email }}</td>
-                            <td class="border border-gray-200 px-6 py-3">{{ $user->usertype }}</td>
+                            <td class="border border-gray-200 px-6 py-3">
+                                {{ $user->roles->pluck('name')->first() }}
+                            </td>
                             <td class="border border-gray-200 px-6 py-3">
                                 <form action="{{ route('team.update-role', $user->id) }}" method="POST"
                                     class="inline-block">
                                     @csrf
-                                    <select name="usertype"
+                                    @method('POST')
+                                    <select name="role"
                                         class="border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-                                        <option value="user" {{ $user->usertype === 'user' ? 'selected' : '' }}>User
+                                        <option value="user" {{ $user->hasRole('user') ? 'selected' : '' }}>User
                                         </option>
-                                        <option value="admin" {{ $user->usertype === 'admin' ? 'selected' : '' }}>Admin
+                                        <option value="admin" {{ $user->hasRole('admin') ? 'selected' : '' }}>Admin
                                         </option>
-                                        <option value="teamIT" {{ $user->usertype === 'teamIT' ? 'selected' : '' }}>
-                                            TeamIT</option>
+                                        <option value="teamIT" {{ $user->hasRole('teamIT') ? 'selected' : '' }}>TeamIT
+                                        </option>
                                     </select>
                                     <button type="submit"
                                         class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 shadow-sm">

@@ -12,7 +12,7 @@
                     <!-- Header Section -->
                     <div class="flex items-center justify-between mb-6">
                         <h1 class="text-2xl font-bold">List Product</h1>
-                        <a href="{{ route('admin/products/create') }}"
+                        <a href="{{ route('admin.products.create') }}"
                             class="px-4 py-2 bg-indigo-500 text-white rounded-md shadow hover:bg-indigo-600 focus:outline-none">
                             Add Product
                         </a>
@@ -46,7 +46,7 @@
 
                             <tbody>
                                 @forelse ($products as $product)
-                                @if(Auth::user()->usertype == 'admin' && Auth::id() == $product->id_user)
+                                @if(Auth::user()->hasRole('admin') && Auth::id() == $product->id_user)
                                 <tr class="hover:bg-gray-100">
                                     <td class="px-4 py-3 border">{{ $loop->iteration }}</td>
                                     <td class="px-4 py-3 border">{{ $product->airline }}</td>
@@ -60,11 +60,11 @@
                                     <td class="px-4 py-3 border">{{ $product->quota_tiket }}</td>
                                     <td class="px-4 py-3 border">
                                         <div class="flex space-x-2">
-                                            <a href="{{ route('admin/products/edit', ['id' => $product->id]) }}"
+                                            <a href="{{ route('admin.products.edit', ['id' => $product->id]) }}"
                                                 class="px-3 py-1 bg-yellow-500 text-white rounded-md shadow hover:bg-yellow-600 focus:outline-none">
                                                 Edit
                                             </a>
-                                            <a href="{{ route('admin/products/delete', ['id' => $product->id]) }}"
+                                            <a href="{{ route('admin.products.delete', ['id' => $product->id]) }}"
                                                 class="px-3 py-1 bg-red-500 text-white rounded-md shadow hover:bg-red-600 focus:outline-none">
                                                 Delete
                                             </a>

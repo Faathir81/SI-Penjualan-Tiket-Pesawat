@@ -9,11 +9,17 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 
 
-Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
-Route::get('/tickets', [UserController::class, 'showTickets'])->name('tickets');
+Route::get('/', [HomeController::class, 'welcome'])
+    ->name('welcome')
+    ->middleware('preventTeamITAndAdmin');
+
+Route::get('/tickets', [UserController::class, 'showTickets'])
+    ->name('tickets')
+    ->middleware('preventTeamITAndAdmin');
+
 
 // Kelompok Rute untuk User
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified', 'role:user'])->group(function () {
     // Dashboard User
     Route::get('/dashboard', [UserController::class, 'showDashboard'])->name('dashboard');
 
@@ -38,17 +44,20 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('admin/dashboard', [HomeController::class, 'index'])->name('admin/dashboard');
-    Route::get('/admin/products', [ProductController::class, 'index'])->name('admin/products');
-    Route::get('/admin/products/create', [ProductController::class, 'create'])->name('admin/products/create');
-    Route::post('/admin/products/save', [ProductController::class, 'save'])->name('admin/products/save');
-    Route::get('/admin/products/edit/{id}', [ProductController::class, 'edit'])->name('admin/products/edit');
-    Route::put('/admin/products/edit/{id}', [ProductController::class, 'update'])->name('admin/products/update');
-    Route::get('/admin/products/delete/{id}', [ProductController::class, 'delete'])->name('admin/products/delete');
+Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
+    Route::get('admin/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/products', [ProductController::class, 'index'])->name('admin.products');
+    Route::get('/admin/products/create', [ProductController::class, 'create'])->name('admin.products.create');
+    Route::post('/admin/products/save', [ProductController::class, 'save'])->name('admin.products.save');
+    Route::get('/admin/products/edit/{id}', [ProductController::class, 'edit'])->name('admin.products.edit');
+    Route::put('/admin/products/edit/{id}', [ProductController::class, 'update'])->name('admin.products.update');
+    Route::get('/admin/products/delete/{id}', [ProductController::class, 'delete'])->name('admin.products.delete');
 });
 
-Route::middleware(['auth', 'teamIT'])->group(function () {
+
+
+
+Route::middleware(['auth', 'verified', 'role:teamIT'])->group(function () {
     Route::get('/team', [TeamController::class, 'index'])->name('team');
     Route::post('/team/{user}/update-role', [TeamController::class, 'updateRole'])->name('team.update-role');
 });
