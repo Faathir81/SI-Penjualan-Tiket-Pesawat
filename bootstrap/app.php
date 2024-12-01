@@ -12,9 +12,11 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-            'admin' => \App\Http\Middleware\Admin::class,
+            'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
+            'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
+            'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
             'user' => \App\Http\Middleware\User::class,
-            'teamIT' => \App\Http\Middleware\Team::class,
+            'preventTeamITAndAdmin' => \App\Http\Middleware\PreventTeamITAndAdminAccess::class
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

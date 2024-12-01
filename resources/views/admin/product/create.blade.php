@@ -1,4 +1,4 @@
-<x-app-layout>
+\<x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Create Product') }}
@@ -17,9 +17,9 @@
                     </div>
                     @endif
 
-                    <p><a href="{{ route('admin/products') }}" class="btn btn-primary">Go Back</a></p>
+                    <p><a href="{{ route('admin.products') }}" class="btn btn-primary">Go Back</a></p>
 
-                    <form action="{{ route('admin/products/save') }}" method="POST">
+                    <form action="{{ route('admin.products.save') }}" method="POST">
                         @csrf
                         <div class="row mb-3">
                             <div class="col">
