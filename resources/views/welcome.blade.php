@@ -8,15 +8,14 @@
         <!-- Main Content -->
         <div class="relative z-10 min-h-screen flex flex-col items-start justify-center px-12">
             <!-- Text Section -->
-            <div class="mb-12">
-                <h1 class="text-white text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight">
+            <div class="mb-5">
+                <h1 class="text-white text-2xl sm:text-3xl md:text-4xl font-extrabold leading-tight">
                     Welcome to Capsswing : <br>
                     <span class="text-indigo-200 underline">
                         Where Will Your Journey Take You Today?
                     </span>
                 </h1>
             </div>
-
 
             <!-- Form Section -->
             <div class="w-full max-w-2xl">

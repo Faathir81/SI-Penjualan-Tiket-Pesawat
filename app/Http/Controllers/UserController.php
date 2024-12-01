@@ -26,7 +26,7 @@ class UserController extends Controller
         }
         $products = Product::getFilteredProducts($departureLocation, $arrivalLocation);
 
-        return view('dashboard', compact('products'));
+        return view('welcome', compact('products'));
     }
 
     public function showTickets(Request $request)

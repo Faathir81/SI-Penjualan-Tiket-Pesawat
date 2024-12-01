@@ -4,37 +4,42 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo and Large Text -->
-                <div class="shrink-0 flex items-center space-x-4">
-                    @auth
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-100" />
+                <div class="boxlogo flex items-center justify-center h-16">
+                    <a href="
+                            @auth
+                                @if(auth()->user()->hasRole('admin'))
+                                    {{ route('admin.dashboard') }}
+                                @elseif(auth()->user()->hasRole('teamIT'))
+                                    {{ route('team') }}
+                                @else
+                                    {{ route('dashboard') }}
+                                @endif
+                            @else
+                                {{ route('welcome') }}
+                            @endauth
+                        " class="flex items-center">
+                        <x-application-logo-light class="block h-8 w-auto fill-current text-gray-100" />
                     </a>
-                    @endauth
-                    @guest
-                    <a href="{{ route('welcome') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-100" />
-                    </a>
-                    @endguest
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex ">
                     @auth
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')"
-                        class="!text-white hover:text-purple-500 active:text-white transition-colors duration-300 text-xl">
+                        class="!text-white hover:text-purple-500 active:text-white transition-colors duration-300 ">
                         {{ __('Welcome') }}
                     </x-nav-link>
                     @endauth
                     @guest
                     <x-nav-link href="{{ route('welcome') }}" :active="request()->routeIs('welcome')"
-                        class="!text-white hover:text-purple-500 active:text-white transition-colors duration-300 text-xl">
+                        class="!text-white hover:text-purple-500 active:text-white transition-colors duration-300 ">
                         {{ __('Welcome') }}
                     </x-nav-link>
 
                     @endguest
 
                     <x-nav-link href="{{ route('tickets') }}" :active="request()->routeIs('tickets')"
-                        class="!text-white hover:text-purple-500 active:text-white transition-colors duration-300 text-xl">
+                        class="!text-white hover:text-purple-500 active:text-white transition-colors duration-300 ">
                         {{ __('Tickets') }}
                     </x-nav-link>
                 </div>
@@ -44,11 +49,11 @@
             <div class="hidden sm:flex sm:items-center sm:space-x-4">
                 @guest
                 <a href="{{ route('login') }}"
-                    class="px-4 py-2 text-gray-100 hover:text-indigo-500 active:text-white border border-transparent rounded-md hover:bg-white bg-indigo-500 transition duration-300">
+                    class="px-4 py-2 text-xs font-semibold text-gray-100 hover:text-indigo-500 active:text-white border border-transparent rounded-md hover:bg-white bg-indigo-500 transition duration-300">
                     {{ __('Login') }}
                 </a>
                 <a href="{{ route('register') }}"
-                    class="px-4 py-2 text-gray-100 hover:text-indigo-500 active:text-white border border-transparent rounded-md hover:bg-white bg-indigo-500 transition duration-300">
+                    class="px-4 py-2 text-xs font-semibold text-gray-100 hover:text-indigo-500 active:text-white border border-transparent rounded-md hover:bg-white bg-indigo-500 transition duration-300">
                     {{ __('Register') }}
                 </a>
                 @endguest

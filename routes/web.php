@@ -54,9 +54,6 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::get('/admin/products/delete/{id}', [ProductController::class, 'delete'])->name('admin.products.delete');
 });
 
-
-
-
 Route::middleware(['auth', 'verified', 'role:teamIT'])->group(function () {
     Route::get('/team', [TeamController::class, 'index'])->name('team');
     Route::post('/team/{user}/update-role', [TeamController::class, 'updateRole'])->name('team.update-role');

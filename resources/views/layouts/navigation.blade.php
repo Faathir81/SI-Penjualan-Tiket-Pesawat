@@ -4,26 +4,22 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    @auth
-                    @if (auth()->user()->usertype === 'user')
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                <div class="boxlogo flex items-center justify-cente h-16 ">
+                    <a href="
+                            @auth
+                                @if(auth()->user()->hasRole('admin'))
+                                    {{ route('admin.dashboard') }}
+                                @elseif(auth()->user()->hasRole('teamIT'))
+                                    {{ route('team') }}
+                                @else
+                                    {{ route('dashboard') }}
+                                @endif
+                            @else
+                                {{ route('welcome') }}
+                            @endauth
+                        " class="flex items-center">
+                        <x-application-logo-violet class="block h-8 w-auto fill-current text-gray-100" />
                     </a>
-                    @elseif (auth()->user()->usertype === 'admin')
-                    <a href="{{ route('admin/dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
-                    </a>
-                    @else
-                    <a href="{{ route('team') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
-                    </a>
-                    @endif
-                    @else
-                    <a href="{{ route('welcome') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
-                    </a>
-                    @endauth
                 </div>
 
                 <!-- Navigation Links -->
