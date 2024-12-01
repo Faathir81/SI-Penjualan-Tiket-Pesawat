@@ -28,16 +28,23 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        if ($request->user()->usertype === 'admin') {
-            return redirect('admin/dashboard');
+        // Redirect berdasarkan role pengguna
+        if ($request->user()->hasRole('admin')) {
+            return redirect()->route('admin.dashboard');
         }
 
-        if ($request->user()->usertype === 'teamIT') {
-            return redirect('team');
+        if ($request->user()->hasRole('teamIT')) {
+            return redirect()->route('team');
         }
-        // return redirect()->intended(route('dashboard', absolute: false));
-        return redirect()->intended(route('dashboard'));
+
+        if ($request->user()->hasRole('user')) {
+            return redirect()->route('dashboard');
+        }
+
+        // Default redirect jika tidak memiliki role yang dikenali
+        return redirect('/');
     }
+
 
     /**
      * Destroy an authenticated session.

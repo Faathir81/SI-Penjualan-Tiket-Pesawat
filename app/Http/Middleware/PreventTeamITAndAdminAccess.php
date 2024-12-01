@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class Admin
+class PreventTeamITAndAdminAccess
 {
     /**
      * Handle an incoming request.
@@ -17,9 +17,10 @@ class Admin
     public function handle(Request $request, Closure $next)
     {
         $user = $request->user();
-        if ($user && $user->hasRole('admin')) {
-            return $next($request);
+        if ($user && ($user->hasRole('admin') || $user->hasRole('teamIT'))) {
+            return redirect()->route($user->hasRole('admin') ? 'admin.dashboard' : 'team');
         }
-        return redirect('dashboard');
+
+        return $next($request);
     }
 }

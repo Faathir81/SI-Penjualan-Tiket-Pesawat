@@ -39,10 +39,10 @@ class ProductController extends Controller
 
         if ($data) {
             session()->flash('success', 'Product added successfully');
-            return redirect(route('admin/products'));
+            return redirect(route('admin.products')); // Perbaikan di sini
         } else {
             session()->flash('error', 'An issue occurred');
-            return redirect(route('admin.products.create'));
+            return redirect(route('admin.products.create')); // Perbaikan di sini
         }
     }
 
@@ -57,10 +57,10 @@ class ProductController extends Controller
         $product = Product::where('id', $id)->where('id_user', Auth::id())->firstOrFail();
         if ($product->delete()) {
             session()->flash('success', 'Product deleted successfully');
-            return redirect(route('admin/products'));
+            return redirect(route('admin.products')); // Perbaikan di sini
         } else {
             session()->flash('error', 'Failed to delete product');
-            return redirect(route('admin/products'));
+            return redirect(route('admin.products')); // Perbaikan di sini
         }
     }
 
@@ -82,6 +82,6 @@ class ProductController extends Controller
         $product->update($validation);
 
         session()->flash('success', 'Product updated successfully');
-        return redirect(route('admin/products'));
+        return redirect(route('admin.products')); // Perbaikan di sini
     }
 }

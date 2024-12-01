@@ -7,14 +7,11 @@ use App\Models\User;
 
 class TeamController extends Controller
 {
-    /**
-     * Display the list of users excluding teamIT.
-     */
     public function index(Request $request)
     {
-
-        // Query pengguna berdasarkan email
-        $users = User::where('usertype', '!=', 'teamIT')
+        $users = User::whereDoesntHave('roles', function ($query) {
+            $query->where('name', 'teamIT');
+        })
             ->where('email', 'like', '%' . $request->email . '%')
             ->get();
 
@@ -22,21 +19,16 @@ class TeamController extends Controller
     }
 
 
-    /**
-     * Update user role.
-     */
     public function updateRole(Request $request, User $user)
     {
-        // Validasi input
         $request->validate([
-            'usertype' => 'required|in:admin,user,teamIT',
+            'role' => 'required|in:admin,user,teamIT',
         ]);
 
         // Update role pengguna
-        $user->usertype = $request->usertype;
-        $user->save();
+        $user->syncRoles([$request->role]);
 
-        // Redirect ke team.index dengan pesan sukses
+        // Redirect dengan pesan sukses
         return redirect()->route('team')->with('success', 'User role updated successfully.');
     }
 }

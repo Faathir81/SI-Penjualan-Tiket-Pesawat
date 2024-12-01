@@ -4,22 +4,24 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Symfony\Component\HttpFoundation\Response;
 
 class Team
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->usertype === 'teamIT') {
+        $user = $request->user();
+
+        if ($user && $user->hasRole('teamIT')) {
             return $next($request);
         }
 
-        return redirect()->route('dashboard');
+        return redirect('dashboard');
     }
 }
