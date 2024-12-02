@@ -17,13 +17,6 @@
                         <canvas id="salesChart"></canvas>
                     </div>
 
-                    <!-- Button to Navigate -->
-                    <div class="mt-6">
-                        <a href="/admin/products"
-                            class="inline-block px-4 py-2 bg-indigo-500 text-white rounded-md shadow hover:bg-indigo-600 focus:outline-none">
-                            Manage Products
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Order;
 
 class TeamController extends Controller
 {
@@ -30,5 +31,12 @@ class TeamController extends Controller
 
         // Redirect dengan pesan sukses
         return redirect()->route('team')->with('success', 'User role updated successfully.');
+    }
+
+    public function global()
+    {
+        $orders = Order::with(['product', 'user'])->get();
+
+        return view('team.global', compact('orders'));
     }
 }

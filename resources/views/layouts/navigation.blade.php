@@ -4,7 +4,7 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="boxlogo flex items-center justify-cente h-16 ">
+                <div class="boxlogo flex items-center justify-center h-16">
                     <a href="
                             @auth
                                 @if(auth()->user()->hasRole('admin'))
@@ -24,7 +24,7 @@
 
                 <!-- Navigation Links -->
                 @auth
-                @if (auth()->user()->usertype === 'user')
+                @if(auth()->user()->hasRole('user'))
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
@@ -35,18 +35,25 @@
                         {{ __('Tickets') }}
                     </x-nav-link>
                 </div>
-                @elseif (auth()->user()->usertype === 'admin')
+                @elseif(auth()->user()->hasRole('admin'))
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('admin/dashboard') }}" :active="request()->routeIs('admin/dashboard')">
+                    <x-nav-link href="{{ route('admin.dashboard') }}" :active="request()->routeIs('admin.dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('admin.products') }}" :active="request()->routeIs('admin.products')">
+                        {{ __('Manage Products') }}
+                    </x-nav-link>
                 </div>
-                @else
+                @elseif(auth()->user()->hasRole('teamIT'))
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('team') }}" :active="request()->routeIs('team')">
                         {{ __('Team Capsswing') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('team.global') }}" :active="request()->routeIs('team.global')">
+                        {{ __('Team Global') }}
+                    </x-nav-link>
                 </div>
+
                 @endif
                 @else
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
@@ -62,6 +69,7 @@
                 @endauth
             </div>
 
+            <!-- User Dropdown -->
             @auth
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
@@ -85,11 +93,10 @@
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
-                        @if(auth()->check() && auth()->user()->usertype === 'user')
+                        @if(auth()->user()->hasRole('user'))
                         <x-dropdown-link :href="route('orders.myTicket')">
-                            {{ __('myTicket') }}
+                            {{ __('My Tickets') }}
                         </x-dropdown-link>
-
                         <x-dropdown-link :href="route('orders.history')">
                             {{ __('History') }}
                         </x-dropdown-link>
@@ -107,15 +114,16 @@
             </div>
             @else
             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                <x-nav-link href="{{route('login')}}">
-                    {{__('Login')}}
+                <x-nav-link href="{{ route('login') }}">
+                    {{ __('Login') }}
                 </x-nav-link>
-                <x-nav-link href="{{route('register')}}">
-                    {{__('Register')}}
+                <x-nav-link href="{{ route('register') }}">
+                    {{ __('Register') }}
                 </x-nav-link>
             </div>
             @endauth
 
+            <!-- Hamburger Menu -->
             <div class="-me-2 flex items-center sm:hidden">
                 <button @click="open = ! open"
                     class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
@@ -136,21 +144,29 @@
         <div class="pt-2 pb-3 space-y-1">
             <!-- Responsive Links -->
             @auth
-            @if (auth()->user()->usertype === 'user')
+            @if(auth()->user()->hasRole('user'))
             <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link href="{{ route('tickets') }}" :active="request()->routeIs('tickets')">
                 {{ __('Tickets') }}
             </x-responsive-nav-link>
-            @elseif(auth()->user()->usertype === 'admin')
-            <x-responsive-nav-link href="{{ route('admin/dashboard') }}"
-                :active="request()->routeIs('admin/dashboard')">
+
+            @elseif(auth()->user()->hasRole('admin'))
+            <x-responsive-nav-link href="{{ route('admin.dashboard') }}"
+                :active="request()->routeIs('admin.dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            @elseif(auth()->user()->usertype === 'teamIT')
+            <x-responsive-nav-link href="{{ route('admin.products') }}" :active="request()->routeIs('admin.products')">
+                {{ __('Manage Products') }}
+            </x-responsive-nav-link>
+
+            @elseif(auth()->user()->hasRole('teamIT'))
             <x-responsive-nav-link href="{{ route('team') }}" :active="request()->routeIs('team')">
                 {{ __('Team Capsswing') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('team.global') }}" :active="request()->routeIs('team.global')">
+                {{ __('Global Transaksi') }}
             </x-responsive-nav-link>
             @endif
             @endauth

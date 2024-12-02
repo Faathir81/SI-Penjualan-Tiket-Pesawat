@@ -56,6 +56,7 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
 
 Route::middleware(['auth', 'verified', 'role:teamIT'])->group(function () {
     Route::get('/team', [TeamController::class, 'index'])->name('team');
+    Route::get('/teamGlobal', [TeamController::class, 'global'])->name('team.global');
     Route::post('/team/{user}/update-role', [TeamController::class, 'updateRole'])->name('team.update-role');
 });
 

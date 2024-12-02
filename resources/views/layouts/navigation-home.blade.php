@@ -6,18 +6,18 @@
                 <!-- Logo and Large Text -->
                 <div class="boxlogo flex items-center justify-center h-16">
                     <a href="
-                            @auth
-                                @if(auth()->user()->hasRole('admin'))
-                                    {{ route('admin.dashboard') }}
-                                @elseif(auth()->user()->hasRole('teamIT'))
-                                    {{ route('team') }}
-                                @else
-                                    {{ route('dashboard') }}
-                                @endif
+                        @auth
+                            @if(auth()->user()->hasRole('admin'))
+                                {{ route('admin.dashboard') }}
+                            @elseif(auth()->user()->hasRole('teamIT'))
+                                {{ route('team') }}
                             @else
-                                {{ route('welcome') }}
-                            @endauth
-                        " class="flex items-center">
+                                {{ route('dashboard') }}
+                            @endif
+                        @else
+                            {{ route('welcome') }}
+                        @endauth
+                    " class="flex items-center">
                         <x-application-logo-light class="block h-8 w-auto fill-current text-gray-100" />
                     </a>
                 </div>
@@ -35,7 +35,6 @@
                         class="!text-white hover:text-purple-500 active:text-white transition-colors duration-300 ">
                         {{ __('Welcome') }}
                     </x-nav-link>
-
                     @endguest
 
                     <x-nav-link href="{{ route('tickets') }}" :active="request()->routeIs('tickets')"
@@ -62,10 +61,10 @@
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             <button
-                                class="flex items-center px-4 py-2 text-gray-100 hover:text-indigo-500 active:text-white border border-transparent rounded-md hover:bg-white bg-indigo-500 transition duration-300">
-                                <div class="font-bold">{{ Auth::user()->name }}</div>
-                                <div class="ml-2">
-                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                class="flex items-center px-3 py-2 text-sm text-gray-100 hover:text-indigo-500 active:text-white border border-transparent rounded-md hover:bg-white bg-indigo-500 transition duration-300">
+                                <div class="font-bold text-sm">{{ Auth::user()->name }}</div>
+                                <div class="ml-1">
+                                    <svg class="fill-current h-3 w-3" xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 20 20">
                                         <path fill-rule="evenodd"
                                             d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
@@ -80,7 +79,7 @@
                                 {{ __('Profile') }}
                             </x-dropdown-link>
 
-                            @if(auth()->check() && auth()->user()->usertype === 'user')
+                            @if(auth()->user()->hasRole('user'))
                             <x-dropdown-link :href="route('orders.myTicket')" class="text-indigo-500 font-bold">
                                 {{ __('myTicket') }}
                             </x-dropdown-link>
@@ -93,7 +92,7 @@
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
-                                                this.closest('form').submit();" class="text-red-600 font-bold">
+                                                        this.closest('form').submit();" class="text-red-600 font-bold">
                                     {{ __('Log Out') }}
                                 </x-dropdown-link>
                             </form>
@@ -122,9 +121,8 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden bg-gray-800">
         <div class="pt-2 pb-3 space-y-1">
-            <!-- Links for Authenticated Users -->
             @auth
-            @if (auth()->user()->usertype === 'user')
+            @if (auth()->user()->hasRole('user'))
             <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')"
                 class="text-white hover:text-purple-500 active:text-white transition-colors duration-300">
                 {{ __('Dashboard') }}
@@ -133,12 +131,12 @@
                 class="text-white hover:text-purple-500 active:text-white transition-colors duration-300">
                 {{ __('Tickets') }}
             </x-responsive-nav-link>
-            @elseif(auth()->user()->usertype === 'admin')
-            <x-responsive-nav-link href="{{ route('admin/dashboard') }}" :active="request()->routeIs('admin/dashboard')"
+            @elseif(auth()->user()->hasRole('admin'))
+            <x-responsive-nav-link href="{{ route('admin.dashboard') }}" :active="request()->routeIs('admin.dashboard')"
                 class="text-white hover:text-purple-500 active:text-white transition-colors duration-300">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            @elseif(auth()->user()->usertype === 'teamIT')
+            @elseif(auth()->user()->hasRole('teamIT'))
             <x-responsive-nav-link href="{{ route('team') }}" :active="request()->routeIs('team')"
                 class="text-white hover:text-purple-500 active:text-white transition-colors duration-300">
                 {{ __('Team Capsswing') }}
@@ -146,7 +144,6 @@
             @endif
             @endauth
 
-            <!-- Links for Guests -->
             @guest
             <x-responsive-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')"
                 class="text-white hover:text-purple-500 active:text-white transition-colors duration-300">
