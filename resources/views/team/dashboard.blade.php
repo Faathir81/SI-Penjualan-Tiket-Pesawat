@@ -12,6 +12,7 @@
 
                 <!-- Form Pencarian -->
                 <form method="GET" action="{{ route('team') }}" class="mb-6">
+                    @csrf
                     <div class="flex items-center space-x-4">
                         <input type="text" name="email" id="email" placeholder="Enter email"
                             value="{{ request('email') }}"

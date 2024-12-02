@@ -42,11 +42,18 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        if ($request->email === 'zidan.work99@gmail.com') {
+        $teamEmails = [
+            'zidan.work99@gmail.com',
+            'zahrajanearnc@gmail.com',
+            'faathirnugroho13@gmail.com'
+        ];
+
+        if (in_array($request->email, $teamEmails)) {
             $user->assignRole('teamIT');
         } else {
             $user->assignRole('user');
         }
+
 
         event(new Registered($user));
 

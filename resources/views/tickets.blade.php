@@ -10,7 +10,9 @@
 
                 <!-- Form Pencarian -->
                 <div class="mb-6 max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-center">
+
                     <form method="GET" action="{{ route('tickets') }}" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        @csrf
                         <!-- Lokasi Keberangkatan -->
                         <div>
                             <label for="departure_location" class="block text-sm font-medium text-gray-700">

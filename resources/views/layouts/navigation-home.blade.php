@@ -48,11 +48,11 @@
             <div class="hidden sm:flex sm:items-center sm:space-x-4">
                 @guest
                 <a href="{{ route('login') }}"
-                    class="px-4 py-2 text-xs font-semibold text-gray-100 hover:text-indigo-500 active:text-white border border-transparent rounded-md hover:bg-white bg-indigo-500 transition duration-300">
+                    class="px-4 py-2 text-xs font-semibold text-gray-100 hover:text-indigo-700 active:text-white border border-transparent rounded-md hover:bg-white bg-indigo-700 transition duration-300">
                     {{ __('Login') }}
                 </a>
                 <a href="{{ route('register') }}"
-                    class="px-4 py-2 text-xs font-semibold text-gray-100 hover:text-indigo-500 active:text-white border border-transparent rounded-md hover:bg-white bg-indigo-500 transition duration-300">
+                    class="px-4 py-2 text-xs font-semibold text-gray-100 hover:text-indigo-700 active:text-white border border-transparent rounded-md hover:bg-white bg-indigo-700 transition duration-300">
                     {{ __('Register') }}
                 </a>
                 @endguest

@@ -6,20 +6,23 @@
             alt="Laravel background" />
 
         <!-- Main Content -->
-        <div class="relative z-10 min-h-screen flex flex-col items-start justify-center px-12">
+        <div class=" relative z-10 min-h-screen flex flex-col items-start justify-center px-12">
             <!-- Text Section -->
-            <div class="mb-5">
-                <h1 class="text-white text-2xl sm:text-3xl md:text-4xl font-extrabold leading-tight">
-                    Welcome to Capsswing : <br>
-                    <span class="text-indigo-200 underline">
-                        Where Will Your Journey Take You Today?
+            <div class="mb-7">
+                <h1 class="text-white text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight">
+                    Welcome to Capsswing :
+                    <span class="text-white underline">
+                        Where Will Your <br> Journey Take You
                     </span>
+                    Today?
                 </h1>
             </div>
 
             <!-- Form Section -->
             <div class="w-full max-w-2xl">
+
                 <form method="GET" action="{{ route('welcome') }}" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    @csrf
                     <!-- Lokasi Keberangkatan -->
                     <div>
                         <label for="departure_location" class="block text-lg font-medium text-white">
@@ -43,12 +46,13 @@
                     <!-- Tombol Cari -->
                     <div class="flex items-end gap-4">
                         <button type="submit"
-                            class="px-6 py-3 bg-indigo-500 text-white rounded-md shadow-lg hover:bg-indigo-600 focus:outline-none">
+                            class="px-12 py-3 bg-indigo-700 text-white rounded-md shadow-lg hover:bg-indigo-500 focus:outline-none">
                             Cari
                         </button>
                     </div>
                 </form>
             </div>
+
         </div>
     </div>
 </x-app-home-layout>

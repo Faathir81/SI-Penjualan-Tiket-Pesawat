@@ -8,7 +8,6 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 
-
 Route::get('/', [HomeController::class, 'welcome'])
     ->name('welcome')
     ->middleware('preventTeamITAndAdmin');
@@ -16,7 +15,6 @@ Route::get('/', [HomeController::class, 'welcome'])
 Route::get('/tickets', [UserController::class, 'showTickets'])
     ->name('tickets')
     ->middleware('preventTeamITAndAdmin');
-
 
 // Kelompok Rute untuk User
 Route::middleware(['auth', 'verified', 'role:user'])->group(function () {
