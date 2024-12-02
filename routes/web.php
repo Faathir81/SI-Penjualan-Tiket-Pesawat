@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SocialiteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
+use Laravel\Socialite\Facades\Socialite;
 
 Route::get('/', [HomeController::class, 'welcome'])
     ->name('welcome')
@@ -15,6 +17,11 @@ Route::get('/', [HomeController::class, 'welcome'])
 Route::get('/tickets', [UserController::class, 'showTickets'])
     ->name('tickets')
     ->middleware('preventTeamITAndAdmin');
+
+Route::controller(SocialiteController::class)->group(function () {
+    Route::get('/auth/google',  'googleLogin')->name('auth.google');
+    Route::get('/auth/google-callback', 'googleAuthentification')->name('auth.google-callback');
+});
 
 // Kelompok Rute untuk User
 Route::middleware(['auth', 'verified', 'role:user'])->group(function () {
