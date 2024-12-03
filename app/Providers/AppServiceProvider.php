@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Notifications\Messages\MailMessage;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,5 +24,15 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Blade::component('layouts.app-home', 'app-home-layout');
+
+        VerifyEmail::toMailUsing(function (object $notifiable, string $url) {
+            return (new MailMessage)
+                ->subject('Verify Email Address')
+                ->view('emails.email-verivication-massage', [
+                    'url' => $url,
+                    'name' => $notifiable->name,
+                    'email' => $notifiable->email,
+                ]);
+        });
     }
 }
