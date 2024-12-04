@@ -55,7 +55,8 @@ Proyek ini adalah Tugas Besar untuk mata kuliah **Pemrograman Berbasis Web** yan
 
 ## UI/UX 
 - **Tool** : Figma<br>
-- Link : [klik disini](https://www.figma.com/design/ustWs4I7H3eeqraP37St4h/Project-Capsswing?node-id=0-1&t=c9yuLyyExLy1YR3T-1)
+- **Prototype Device** : MacBook Pro 14"<br>
+- **Link** : [klik disini](https://www.figma.com/design/ustWs4I7H3eeqraP37St4h/Project-Capsswing?node-id=0-1&t=c9yuLyyExLy1YR3T-1)
 ## Teknologi yang Digunakan
 
 - **Backend** : Laravel 11
