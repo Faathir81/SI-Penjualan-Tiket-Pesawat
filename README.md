@@ -43,21 +43,25 @@ Proyek ini adalah Tugas Besar untuk mata kuliah **Pemrograman Berbasis Web** yan
 - Transaksi : Digunakan untuk proses transaksi/pembayaran
 - Riwayat Pembelian : Digunakan untuk melihat Riwayat pembelian
 
-## ERD
-<img src="assets/ERD.png" width="600" height="600">
-
-## Flowchart
-<img src="assets/flowchart.png" width="500" height="500">
 
 ## Use Case
 <img src="assets/usecase.PNG">
 
+## Flowchart
+<img src="assets/flowchart.png" width="500" height="500">
+
+## ERD
+<img src="assets/ERD.png" width="600" height="600">
+
+## UI/UX 
+- **Tool** : Figma<br>
+- Link : [klik disini](https://www.figma.com/design/ustWs4I7H3eeqraP37St4h/Project-Capsswing?node-id=0-1&t=c9yuLyyExLy1YR3T-1)
 ## Teknologi yang Digunakan
 
-- **Backend**: Laravel 11
-- **Frontend**: Tailwind & JavaScript
-- **Database**: MySQL
-- **Version Control**: Git
+- **Backend** : Laravel 11
+- **Frontend** : Tailwind & JavaScript
+- **Database** : MySQL
+- **Version Control** : Git
 
 ## Instalasi
 
