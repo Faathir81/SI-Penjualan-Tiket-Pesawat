@@ -10,7 +10,7 @@
             <!-- Text Section -->
             <div class="mb-7">
                 <h1 class="text-white text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight">
-                    Welcome to Capsswing Zahra :
+                    Welcome to Capsswing Husein:
                     <span class="text-white underline">
                         Where Will Your <br> Journey Take You
                     </span>
