@@ -34,9 +34,18 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
+
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
         'redirect' => env('GOOGLE_REDIRECT_URL'),
     ],
+
+    'midtrans' => [
+        'serverKey' => env('MIDTRANS_SERVERKEY'),
+        'clientKey' => env('MIDTRANS_CLIENTKEY'),
+        'isProduction' => env('MIDTRANS_IS_PRODUCTION', true),
+        'isSanitizied' => env('MIDTRANS_IS_SANITIZIED', true),
+        'is3ds' => env('MIDTRANS_IS_3DS', true),
+    ]
 ];

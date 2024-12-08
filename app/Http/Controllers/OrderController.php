@@ -53,7 +53,6 @@ class OrderController extends Controller
             return back()->withErrors(['seat' => 'Nomor kursi sudah dipesan. Silakan pilih kursi lain.']);
         }
 
-        // Menyimpan pesanan ke database
         $order = Order::create([
             'product_id' => $product->id,
             'user_id' => Auth::id(),
@@ -62,16 +61,17 @@ class OrderController extends Controller
             'phone' => $request->phone,
             'quantity' => $request->quantity,
             'seat' => $request->seat,
-            'total_price' => $product->price * $request->quantity,
+            'total_price' => $product->price * $request->quantity, // Menghitung total harga
         ]);
 
         // Mengurangi kuota tiket
         $product->decrement('quota_tiket', $request->quantity);
 
-        // Redirect ke halaman transaksi
-        return redirect()->route('transaction.show', $order->id)
-            ->with('success', 'Pemesanan berhasil! Lihat detail transaksi Anda.');
+        // Redirect ke PaymentController untuk memulai transaksi
+        return redirect()->route('payment.initiate', ['order' => $order->id])
+            ->with('success', 'Pesanan berhasil dibuat! Lanjutkan ke pembayaran.');
     }
+
 
     // Menampilkan detail transaksi berdasarkan pesanan
     public function showtransaksiForm(Order $order)

@@ -1,14 +1,15 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SocialiteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TeamController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\OrderController;
 use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SocialiteController;
 
 Route::get('/', [HomeController::class, 'welcome'])
     ->name('welcome')
@@ -31,8 +32,15 @@ Route::middleware(['auth', 'verified', 'role:user'])->group(function () {
     // Rute Pemesanan dan Transaksi
     Route::get('/order/{productId}', [OrderController::class, 'create'])->name('orders.create');
     Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
-    Route::get('/transaksi/{order}', [OrderController::class, 'showtransaksiForm'])->name('transaction.show');
-    Route::post('/transaksi', [OrderController::class, 'processtransaksi'])->name('transaksi.process');
+
+    Route::get('/payment/initiate/{order}', [PaymentController::class, 'initiate'])->name('payment.initiate');
+    Route::post('/payment/callback', [PaymentController::class, 'handleCallback'])->name('payment.callback');
+
+    Route::get('/payment/redirect', [PaymentController::class, 'processRedirect'])->name('payment.redirect');
+
+    Route::get('/payment/success', [PaymentController::class, 'handleRedirect'])->name('payment.success');
+    Route::get('/payment/pending', [PaymentController::class, 'handleRedirect'])->name('payment.pending');
+    Route::get('/payment/failed', [PaymentController::class, 'handleRedirect'])->name('payment.failed');
 
     Route::get('/history', [OrderController::class, 'userHistory'])->name('orders.history');
 

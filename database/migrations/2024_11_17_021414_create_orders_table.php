@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone');
             $table->integer('quantity');
-            $table->integer('total_price');
             $table->integer('seat');
+            $table->decimal('total_price', 10, 2);
             $table->timestamps();
         });
     }
