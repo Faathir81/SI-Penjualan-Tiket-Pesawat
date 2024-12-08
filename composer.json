@@ -9,6 +9,7 @@
         "laravel/framework": "^11.9",
         "laravel/socialite": "^5.16",
         "laravel/tinker": "^2.9",
+        "midtrans/midtrans-php": "^2.6",
         "psy/psysh": "^0.12.4",
         "spatie/laravel-permission": "^6.10"
     },
