@@ -36,11 +36,17 @@ Route::middleware(['auth', 'verified', 'role:user'])->group(function () {
     Route::get('/payment/initiate/{order}', [PaymentController::class, 'initiate'])->name('payment.initiate');
     Route::post('/payment/callback', [PaymentController::class, 'handleCallback'])->name('payment.callback');
 
-    Route::get('/payment/redirect', [PaymentController::class, 'processRedirect'])->name('payment.redirect');
+    Route::get('/payment/redirect', [PaymentController::class, 'handleRedirect'])->name('payment.redirect');
 
-    Route::get('/payment/success', [PaymentController::class, 'handleRedirect'])->name('payment.success');
-    Route::get('/payment/pending', [PaymentController::class, 'handleRedirect'])->name('payment.pending');
-    Route::get('/payment/failed', [PaymentController::class, 'handleRedirect'])->name('payment.failed');
+    // Route::get('/payment/success', [PaymentController::class, 'handleRedirect'])->name('payment.success');
+    // Route::get('/payment/pending', [PaymentController::class, 'handleRedirect'])->name('payment.pending');
+    // Route::get('/payment/failed', [PaymentController::class, 'handleRedirect'])->name('payment.failed');
+
+    Route::get('/payment/success', [PaymentController::class, 'successPage'])->name('payment.success');
+    Route::get('/payment/pending', [PaymentController::class, 'pendingPage'])->name('payment.pending');
+    Route::get('/payment/failed', [PaymentController::class, 'failedPage'])->name('payment.failed');
+
+    Route::get('/payment/success', [PaymentController::class, 'successPage'])->name('payment.success');
 
     Route::get('/history', [OrderController::class, 'userHistory'])->name('orders.history');
 
@@ -59,12 +65,13 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::get('admin/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
+
     Route::get('/admin/products', [ProductController::class, 'index'])->name('admin.products');
     Route::get('/admin/products/create', [ProductController::class, 'create'])->name('admin.products.create');
     Route::post('/admin/products/save', [ProductController::class, 'save'])->name('admin.products.save');
     Route::get('/admin/products/edit/{id}', [ProductController::class, 'edit'])->name('admin.products.edit');
-    Route::put('/admin/products/edit/{id}', [ProductController::class, 'update'])->name('admin.products.update');
-    Route::get('/admin/products/delete/{id}', [ProductController::class, 'delete'])->name('admin.products.delete');
+    Route::put('/admin/products/update/{id}', [ProductController::class, 'update'])->name('admin.products.update');
+    Route::delete('/admin/products/delete/{id}', [ProductController::class, 'delete'])->name('admin.products.delete');
 });
 
 Route::middleware(['auth', 'verified', 'role:teamIT'])->group(function () {

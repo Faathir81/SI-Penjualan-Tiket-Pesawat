@@ -9,7 +9,8 @@
 
 <body>
     <h1>Pembayaran Berhasil</h1>
-    <p>Nomor Transaksi: {{ $orderId }}</p>
-    <a href="{{route('order')}}">Back To Home</a>
+    <p>Nomor Order: {{ $orderNumber }}</p>
+
+    <a href="{{ route('ticket.detail', ['order' => $orderNumber]) }}">Back To Home</a>
 
 </html>

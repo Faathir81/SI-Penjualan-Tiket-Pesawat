@@ -50,6 +50,9 @@ class PaymentController extends Controller
                 'transaction_details' => $transactionDetails,
                 'item_details' => $itemDetails,
                 'customer_details' => $customerDetails,
+                'callbacks' => [
+                    'finish' => route('payment.redirect'),
+                ],
             ];
 
             // Generate Snap Token
@@ -103,35 +106,21 @@ class PaymentController extends Controller
         $transactionStatus = $request->query('transaction_status');
 
         if ($transactionStatus === 'settlement' && $statusCode == '200') {
-            return view('payments.success', ['orderId' => $orderId]);
+            return redirect()->route('payment.success', ['orderId' => $orderId]);
         } elseif ($transactionStatus === 'pending') {
-            return view('payments.pending', ['orderId' => $orderId]);
+            return redirect()->route('payment.pending', ['orderId' => $orderId]);
         } else {
-            return view('payments.failed', ['orderId' => $orderId]);
+            return redirect()->route('payment.failed', ['orderId' => $orderId]);
         }
     }
 
-    /**
-     * Memproses transaksi manual (jika diperlukan).
-     */
-    public function processTransaction(Request $request, Order $order)
+    public function successPage(Request $request)
     {
-        $request->validate([
-            'amount' => 'required|numeric|min:1',
-        ]);
+        $orderId = $request->query('orderId');
 
-        $totalPrice = $order->total_price;
+        preg_match('/\d+$/', $orderId, $matches);
+        $orderNumber = $matches[0] ?? null;
 
-        if ($request->amount < $totalPrice) {
-            return back()->withErrors(['amount' => 'Jumlah uang kurang dari total harga.']);
-        } elseif ($request->amount > $totalPrice) {
-            return back()->withErrors(['amount' => 'Jumlah uang melebihi total harga.']);
-        }
-
-        // Tandai pesanan sebagai lunas
-        $order->update(['status' => 'paid']);
-
-        return redirect()->route('ticket.detail', $order->id)
-            ->with('success', 'Pembayaran berhasil! Berikut detail tiket Anda.');
+        return view('payments.success', ['orderNumber' => $orderNumber]);
     }
 }

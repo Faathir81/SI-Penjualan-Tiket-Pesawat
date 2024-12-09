@@ -8,18 +8,28 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
+    /**
+     * Menampilkan daftar produk.
+     */
     public function index()
     {
         $products = Product::where('id_user', Auth::id())->orderBy('id', 'desc')->get();
         $total = $products->count();
+
         return view('admin.product.home', compact('products', 'total'));
     }
 
+    /**
+     * Menampilkan halaman tambah produk.
+     */
     public function create()
     {
         return view('admin.product.create');
     }
 
+    /**
+     * Menyimpan produk baru ke database.
+     */
     public function save(Request $request)
     {
         $validation = $request->validate([
@@ -38,32 +48,26 @@ class ProductController extends Controller
         $data = Product::create($validation);
 
         if ($data) {
-            session()->flash('success', 'Product added successfully');
-            return redirect(route('admin.products')); // Perbaikan di sini
+            session()->flash('success', 'Product added successfully.');
+            return redirect(route('admin.products'));
         } else {
-            session()->flash('error', 'An issue occurred');
-            return redirect(route('admin.products.create')); // Perbaikan di sini
+            session()->flash('error', 'An issue occurred while adding the product.');
+            return redirect(route('admin.products.create'));
         }
     }
 
+    /**
+     * Menampilkan halaman edit produk.
+     */
     public function edit($id)
     {
-        $products = Product::findOrFail($id);
-        return view('admin.product.update', compact('products'));
-    }
-
-    public function delete($id)
-    {
         $product = Product::where('id', $id)->where('id_user', Auth::id())->firstOrFail();
-        if ($product->delete()) {
-            session()->flash('success', 'Product deleted successfully');
-            return redirect(route('admin.products')); // Perbaikan di sini
-        } else {
-            session()->flash('error', 'Failed to delete product');
-            return redirect(route('admin.products')); // Perbaikan di sini
-        }
+        return view('admin.product.update', compact('product'));
     }
 
+    /**
+     * Memperbarui data produk di database.
+     */
     public function update(Request $request, $id)
     {
         $product = Product::where('id', $id)->where('id_user', Auth::id())->firstOrFail();
@@ -79,9 +83,29 @@ class ProductController extends Controller
             'quota_tiket' => 'required|integer|max:25',
         ]);
 
+        // Konversi waktu ke format datetime MySQL
+        $validation['departure_time'] = \Carbon\Carbon::parse($validation['departure_time'])->format('Y-m-d H:i:s');
+        $validation['arrival_time'] = \Carbon\Carbon::parse($validation['arrival_time'])->format('Y-m-d H:i:s');
+
         $product->update($validation);
 
-        session()->flash('success', 'Product updated successfully');
-        return redirect(route('admin.products')); // Perbaikan di sini
+        session()->flash('success', 'Product updated successfully.');
+        return redirect(route('admin.products'));
+    }
+
+    /**
+     * Menghapus produk dari database.
+     */
+    public function delete($id)
+    {
+        $product = Product::where('id', $id)->where('id_user', Auth::id())->firstOrFail();
+
+        if ($product->delete()) {
+            session()->flash('success', 'Product deleted successfully.');
+            return redirect(route('admin.products'));
+        } else {
+            session()->flash('error', 'Failed to delete product.');
+            return redirect(route('admin.products'));
+        }
     }
 }

@@ -26,10 +26,21 @@ class Product extends Model
         'arrival_time' => 'datetime',
     ];
 
+    /**
+     * Relasi ke pengguna (User)
+     */
     public function user()
     {
         return $this->belongsTo(User::class, 'id_user');
     }
+
+    /**
+     * Filter produk berdasarkan lokasi keberangkatan dan tujuan
+     *
+     * @param string|null $departureLocation
+     * @param string|null $arrivalLocation
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
     public static function getFilteredProducts($departureLocation = null, $arrivalLocation = null)
     {
         return self::query()
