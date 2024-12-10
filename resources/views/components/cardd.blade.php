@@ -1,3 +1,6 @@
+<div class="container mx-auto px-4 py-10">
+  <div class="flex justify-center">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       <!-- Card 1 -->
       <div class="max-w-sm rounded-lg overflow-hidden shadow-lg border border-gray-200">
         <img class="w-full h-48 object-cover" src="https://via.placeholder.com/400x200" alt="Jakarta ke Hongkong">
@@ -28,7 +31,7 @@
             <svg class="w-5 h-5 text-gray-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h11M9 21v-6m4 0V5m7 0v11M9 3H5a2 2 0 00-2 2v11a2 2 0 002 2h4m0-9v6"></path>
             </svg>
-            <span>Sriwijaya Airlines</span>
+            <span>Lion Airlines</span>
             <span class="ml-auto text-emerald-600 font-semibold">Ekonomi</span>
           </div>
           <div class="mt-4">
@@ -48,7 +51,7 @@
             <svg class="w-5 h-5 text-gray-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h11M9 21v-6m4 0V5m7 0v11M9 3H5a2 2 0 00-2 2v11a2 2 0 002 2h4m0-9v6"></path>
             </svg>
-            <span>Garuda Airlines</span>
+            <span>China Airlines</span>
             <span class="ml-auto text-emerald-600 font-semibold">Ekonomi</span>
           </div>
           <div class="mt-4">
@@ -58,3 +61,5 @@
         </div>
       </div>
     </div>
+  </div>
+</div>

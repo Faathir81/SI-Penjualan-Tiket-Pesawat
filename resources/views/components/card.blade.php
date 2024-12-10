@@ -1,3 +1,6 @@
+<div class="container mx-auto px-4 py-10">
+  <div class="flex justify-center">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       <!-- Card 1 -->
       <div class="max-w-sm rounded-lg overflow-hidden shadow-lg border border-gray-200">
         <img class="w-full h-48 object-cover" src="https://via.placeholder.com/400x200" alt="Jakarta ke Hongkong">
@@ -58,3 +61,5 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
