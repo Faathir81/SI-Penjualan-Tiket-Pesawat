@@ -1,4 +1,8 @@
-<nav x-data="{ open: false }" class="bg-transparent transition-colors duration-300 z-50 fixed w-full top-0">
+<nav     x-data="{ scrolled: false }" 
+x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 0 })" 
+x-bind:class="scrolled ? 'backdrop-blur-md bg-black/50 shadow-md' : 'bg-transparent'" 
+class="fixed w-full top-0 z-50 transition-all duration-300">
+
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">

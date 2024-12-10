@@ -1,0 +1,60 @@
+      <!-- Card 1 -->
+      <div class="max-w-sm rounded-lg overflow-hidden shadow-lg border border-gray-200">
+        <img class="w-full h-48 object-cover" src="https://via.placeholder.com/400x200" alt="Jakarta ke Hongkong">
+        <div class="p-4">
+          <h3 class="text-lg font-bold mb-1">Jakarta → Bali</h3>
+          <p class="text-gray-500 text-sm mb-2">2 Jan 2024</p>
+          <div class="flex items-center text-sm text-gray-700 mb-2">
+            <svg class="w-5 h-5 text-gray-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h11M9 21v-6m4 0V5m7 0v11M9 3H5a2 2 0 00-2 2v11a2 2 0 002 2h4m0-9v6"></path>
+            </svg>
+            <span>Garuda Airlines</span>
+            <span class="ml-auto text-emerald-600 font-semibold">Ekonomi</span>
+          </div>
+          <div class="mt-4">
+            <p class="text-sm text-gray-500">Mulai dari</p>
+            <p class="text-xl font-bold text-red-600">IDR 20.580.000</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="max-w-sm rounded-lg overflow-hidden shadow-lg border border-gray-200">
+        <img class="w-full h-48 object-cover" src="https://via.placeholder.com/400x200" alt="Jakarta ke Singapore">
+        <div class="p-4">
+          <h3 class="text-lg font-bold mb-1">Jakarta → Yogyakarta</h3>
+          <p class="text-gray-500 text-sm mb-2">2 Jan 2024</p>
+          <div class="flex items-center text-sm text-gray-700 mb-2">
+            <svg class="w-5 h-5 text-gray-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h11M9 21v-6m4 0V5m7 0v11M9 3H5a2 2 0 00-2 2v11a2 2 0 002 2h4m0-9v6"></path>
+            </svg>
+            <span>Sriwijaya Airlines</span>
+            <span class="ml-auto text-emerald-600 font-semibold">Ekonomi</span>
+          </div>
+          <div class="mt-4">
+            <p class="text-sm text-gray-500">Mulai dari</p>
+            <p class="text-xl font-bold text-red-600">IDR 11.270.000</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="max-w-sm rounded-lg overflow-hidden shadow-lg border border-gray-200">
+        <img class="w-full h-48 object-cover" src="https://via.placeholder.com/400x200" alt="Jakarta ke Taiwan">
+        <div class="p-4">
+          <h3 class="text-lg font-bold mb-1">Jakarta → Padang</h3>
+          <p class="text-gray-500 text-sm mb-2">2 Jan 2024</p>
+          <div class="flex items-center text-sm text-gray-700 mb-2">
+            <svg class="w-5 h-5 text-gray-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h11M9 21v-6m4 0V5m7 0v11M9 3H5a2 2 0 00-2 2v11a2 2 0 002 2h4m0-9v6"></path>
+            </svg>
+            <span>Garuda Airlines</span>
+            <span class="ml-auto text-emerald-600 font-semibold">Ekonomi</span>
+          </div>
+          <div class="mt-4">
+            <p class="text-sm text-gray-500">Mulai dari</p>
+            <p class="text-xl font-bold text-red-600">IDR 6.270.000</p>
+          </div>
+        </div>
+      </div>
+    </div>

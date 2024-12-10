@@ -70,8 +70,11 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // Cek apakah Auth::id() mengembalikan ID yang benar
+        dd(Auth::id());
+    
         $product = Product::where('id', $id)->where('id_user', Auth::id())->firstOrFail();
-
+    
         $validation = $request->validate([
             'airline' => 'required|string',
             'category' => 'required|in:class A,class B,class C',
@@ -82,16 +85,18 @@ class ProductController extends Controller
             'price' => 'required|integer',
             'quota_tiket' => 'required|integer|max:25',
         ]);
-
+    
         // Konversi waktu ke format datetime MySQL
         $validation['departure_time'] = \Carbon\Carbon::parse($validation['departure_time'])->format('Y-m-d H:i:s');
         $validation['arrival_time'] = \Carbon\Carbon::parse($validation['arrival_time'])->format('Y-m-d H:i:s');
-
+    
         $product->update($validation);
-
+    
         session()->flash('success', 'Product updated successfully.');
         return redirect(route('admin.products'));
     }
+    
+    
 
     /**
      * Menghapus produk dari database.

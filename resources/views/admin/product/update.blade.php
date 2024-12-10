@@ -14,13 +14,15 @@
                     <form action="{{ route('admin.products.update', $product->id) }}" method="POST">
                         @csrf
                         @method('PUT')
-                        <div class="form-group">
-                            <label for="airline">Airline</label>
-                            <input type="text" name="airline" class="form-control"
-                                value="{{ old('airline', $product->airline) }}">
-                            @error('airline')
-                            <small class="text-danger">{{ $message }}</small>
-                            @enderror
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label class="form-label">Airline</label>
+                                <input type="text" name="airline" class="form-control" placeholder="Airline"
+                                    value="{{ old('airline', $product->airline) }}">
+                                @error('airline')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col mb-3">
@@ -68,7 +70,7 @@
                         </div>
                         <div class="row">
                             <div class="d-grid">
-                                <button type="submit" class="btn btn-warning">
+                                <button class="btn btn-warning">
                                     Update Now!
                                 </button>
                             </div>
