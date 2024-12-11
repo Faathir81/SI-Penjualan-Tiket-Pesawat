@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Pembayaran') }}
+            {{ __('Pembayaran') }} 📄
         </h2>
     </x-slot>
 
@@ -41,15 +41,15 @@
         <!-- Pay Button -->
         <div class="mt-6 text-center">
             <button id="pay-button" class="bg-blue-500 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-600">
-                Bayar Sekarang
+                Bayar Sekarang 💸
             </button>
         </div>
     </div>
 
     <script type="text/javascript">
-        const payButton = document.getElementById('pay-button');
-        payButton.addEventListener('click', function() {
-            snap.pay('{{ $snapToken }}');
-        });
+    const payButton = document.getElementById('pay-button');
+    payButton.addEventListener('click', function() {
+        snap.pay('{{ $snapToken }}');
+    });
     </script>
 </x-app-layout>

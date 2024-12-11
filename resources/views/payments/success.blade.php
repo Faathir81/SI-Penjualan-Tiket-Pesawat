@@ -21,10 +21,12 @@
         </div>
 
         <div class="mt-6 text-center">
-            <a href="{{ route('ticket.detail', ['order' => $orderNumber]) }}"
-                class="bg-blue-500 text-white py-2 px-6 rounded-lg shadow-md font-semibold hover:bg-blue-600 inline-flex items-center">
-                🎫 Cetak Tiket
-            </a>
+            <form action="{{ route('ticket.detail', ['order' => $orderNumber]) }}" method="GET" class="text-center">
+                <button type="submit"
+                    class="bg-blue-500 text-white py-2 px-6 rounded-lg shadow-md font-semibold hover:bg-blue-600 inline-flex items-center">
+                    🎫 Cetak Tiket
+                </button>
+            </form>
         </div>
     </div>
 </x-app-layout>
