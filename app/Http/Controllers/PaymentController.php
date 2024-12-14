@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Midtrans\Snap;
@@ -22,7 +23,7 @@ class PaymentController extends Controller
     /**
      * Memulai transaksi dengan Midtrans.
      */
-    public function initiate(Order $order)
+    public function initiate(Order $order, Product $product)
     {
         try {
             // Persiapkan detail transaksi
@@ -36,7 +37,7 @@ class PaymentController extends Controller
                     'id' => $order->id,
                     'price' => $order->product->price,
                     'quantity' => $order->quantity,
-                    'name' => 'Tiket ' . $order->product->name,
+                    'name' => 'Tiket ' . $order->product->airline,
                 ],
             ];
 
@@ -61,7 +62,7 @@ class PaymentController extends Controller
             // Simpan Snap Token ke order
             $order->update(['snap_token' => $snapToken]);
 
-            return view('payments.initiate', compact('order', 'snapToken'));
+            return view('payments.initiate', compact('order', 'snapToken', 'transactionDetails', 'itemDetails', 'customerDetails'));
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'Gagal memulai pembayaran: ' . $e->getMessage()]);
         }
