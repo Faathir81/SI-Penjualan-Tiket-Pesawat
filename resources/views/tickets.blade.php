@@ -78,7 +78,6 @@
                                                 <p class="text-gray-500 text-xs">{{ $product->departure_location }}</p>
                                             </div>
                                             <div class="flex items-center space-x-2 text-gray-400">
-                                                <span class="text-xs">Durasi: {{ $product->duration ?? 'N/A' }}</span>
                                                 <div class="w-4 h-4 rounded-full bg-gray-400"></div>
                                             </div>
                                             <!-- Kedatangan -->
