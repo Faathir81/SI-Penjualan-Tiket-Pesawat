@@ -69,3 +69,7 @@ Proyek ini adalah Tugas Besar untuk mata kuliah **Pemrograman Berbasis Web** yan
 1. Clone repository ini:
    ```bash
    git clone https://github.com/Faathir81/SI-Penjualan-Tiket-Pesawat.git
+
+2. Composer install
+   ```bash
+   composer install
