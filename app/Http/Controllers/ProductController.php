@@ -65,14 +65,11 @@ class ProductController extends Controller
         return view('admin.product.update', compact('product'));
     }
 
-    /**
+    /*
      * Memperbarui data produk di database.
      */
     public function update(Request $request, $id)
     {
-        // Cek apakah Auth::id() mengembalikan ID yang benar
-        dd(Auth::id());
-    
         $product = Product::where('id', $id)->where('id_user', Auth::id())->firstOrFail();
     
         $validation = $request->validate([
@@ -83,7 +80,6 @@ class ProductController extends Controller
             'departure_time' => 'required|date',
             'arrival_time' => 'required|date',
             'price' => 'required|integer',
-            'quota_tiket' => 'required|integer|max:25',
         ]);
     
         // Konversi waktu ke format datetime MySQL

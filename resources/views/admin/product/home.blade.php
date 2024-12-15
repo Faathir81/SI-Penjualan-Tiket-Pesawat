@@ -60,15 +60,31 @@
                                     <td class="px-4 py-3 border">{{ $product->quota_tiket }}</td>
                                     <td class="px-4 py-3 border">
                                         <div class="flex space-x-2">
+                                            <!-- Edit Button -->
                                             <a href="{{ route('admin.products.edit', ['id' => $product->id]) }}"
-                                                class="px-3 py-1 bg-yellow-500 text-white rounded-md shadow hover:bg-yellow-600 focus:outline-none">
+                                               class="px-3 py-1 bg-yellow-500 text-white rounded-md shadow hover:bg-yellow-600 focus:outline-none">
                                                 Edit
                                             </a>
-                                            <a href="{{ route('admin.products.delete', ['id' => $product->id]) }}"
-                                                class="px-3 py-1 bg-red-500 text-white rounded-md shadow hover:bg-red-600 focus:outline-none">
+                                            
+                                            <!-- Delete Button -->
+                                            <a href="#" 
+                                               onclick="event.preventDefault(); 
+                                                       if (confirm('Are you sure you want to delete this product?')) {
+                                                           document.getElementById('delete-form-{{ $product->id }}').submit();
+                                                       }" 
+                                               class="px-3 py-1 bg-red-500 text-white rounded-md shadow hover:bg-red-600 focus:outline-none">
                                                 Delete
                                             </a>
-                                        </div>
+                                        
+                                            <!-- Hidden Form for Deleting Product -->
+                                            <form id="delete-form-{{ $product->id }}" 
+                                                  action="{{ route('admin.products.delete', ['id' => $product->id]) }}" 
+                                                  method="POST" 
+                                                  style="display: none;">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
+                                        </div>                                        
                                     </td>
                                 </tr>
                                 @endif
