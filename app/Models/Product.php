@@ -18,6 +18,7 @@ class Product extends Model
         'arrival_time',
         'price',
         'quota_tiket',
+        'id_user',
     ];
 
     protected $casts = [
