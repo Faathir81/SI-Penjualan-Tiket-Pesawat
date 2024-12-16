@@ -13,40 +13,33 @@
                 @if($orders->isEmpty())
                 <p class="text-gray-600 text-center">Anda belum memiliki histori pesanan.</p>
                 @else
-                <div class="overflow-x-auto">
-                    <table class="w-full table-auto border-collapse border border-gray-300 shadow-lg">
-                        <thead class="bg-indigo-500 text-white">
-                            <tr>
-                                <th class="px-6 py-3 text-left text-sm font-medium">Tanggal</th>
-                                <th class="px-6 py-3 text-left text-sm font-medium">Maskapai</th>
-                                <th class="px-6 py-3 text-left text-sm font-medium">Nomor Kursi</th>
-                                <th class="px-6 py-3 text-left text-sm font-medium">Jumlah Tiket</th>
-                                <th class="px-6 py-3 text-left text-sm font-medium">Total Harga</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white">
-                            @foreach($orders as $order)
-                            <tr class="border-b hover:bg-gray-100 transition duration-150 ease-in-out">
-                                <td class="px-6 py-4 text-sm text-gray-800">
-                                    {{ $order->created_at->format('d M Y, H:i') }}
-                                </td>
-                                <td class="px-6 py-4 text-sm text-gray-800">
-                                    {{ $order->product->airline }}
-                                </td>
-                                <td class="px-6 py-4 text-sm text-gray-800">
-                                    {{ $order->seat }}
-                                </td>
-                                <td class="px-6 py-4 text-sm text-gray-800">
-                                    {{ $order->quantity }}
-                                </td>
-                                <td class="px-6 py-4 text-sm text-gray-800">
-                                    <span class="font-semibold">Rp</span>{{ number_format($order->total_price) }}
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+                    @foreach($orders as $order)
+                    <div class="bg-white rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow duration-300">
+                        <!-- Header Card -->
+                        <div class="bg-violet-950 text-white rounded-t-lg p-4">
+                            <p class="text-sm opacity-80">{{ $order->created_at->format('d M Y, H:i') }}</p>
+                            <h4 class="text-lg font-semibold">{{ $order->product->airline }}</h4>
+                        </div>
+                
+                        <!-- Body Card -->
+                        <div class="p-4 space-y-3">
+                            <div class="flex justify-between">
+                                <p class="text-gray-700 font-medium">Nomor Kursi:</p>
+                                <p class="font-semibold">{{ $order->seat }}</p>
+                            </div>
+                            <div class="flex justify-between">
+                                <p class="text-gray-700 font-medium">Jumlah Tiket:</p>
+                                <p class="font-semibold">{{ $order->quantity }}</p>
+                            </div>
+                            <div class="flex justify-between">
+                                <p class="text-gray-700 font-medium">Total Harga:</p>
+                                <p class="font-semibold text-red-500">Rp{{ number_format($order->total_price) }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>                
                 @endif
             </div>
         </div>

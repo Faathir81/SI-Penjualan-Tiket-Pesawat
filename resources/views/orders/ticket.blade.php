@@ -7,46 +7,42 @@
     <title>Detail Tiket</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-
-<body class="bg-gray-100 py-12">
-    <div class="max-w-4xl mx-auto">
-        <div class="bg-white shadow-lg rounded-lg p-6 border">
-            <!-- Header Tiket -->
-            <div class="text-center border-b pb-4 mb-4">
-                <h2 class="text-3xl font-bold text-indigo-700">Detail Tiket Anda</h2>
-                <p class="text-gray-600">Terima kasih atas pemesanan Anda</p>
-            </div>
-
-            <!-- Informasi Tiket -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                    <p><strong>Maskapai:</strong> {{ $order->product->airline }}</p>
-                    <p><strong>Nomor Kursi:</strong> {{ $order->seat }}</p>
-                    <p><strong>Nama Pemesan:</strong> {{ $order->name }}</p>
-                    <p><strong>Email:</strong> {{ $order->email }}</p>
+    <body class="bg-gray-100 py-12">
+        <div class="max-w-4xl mx-auto mt-10">
+            <div class="bg-white shadow-md rounded-lg p-8 border border-gray-200">
+                <!-- Header -->
+                <div class="border-b pb-4 mb-6">
+                    <h2 class="text-2xl font-bold text-violet-900">Detail Pembayaran</h2>
+                    <p class="text-gray-500 text-sm">Silakan lihat detail pemesanan Anda</p>
                 </div>
-                <div>
-                    <p><strong>Nomor Telepon:</strong> {{ $order->phone }}</p>
-                    <p><strong>Jumlah Tiket:</strong> {{ $order->quantity }}</p>
-                    <p><strong>Total Harga:</strong> Rp{{ number_format($order->total_price) }}</p>
-                    <p><strong>Tanggal Pemesanan:</strong> {{ $order->created_at->format('d M Y, H:i') }}</p>
+        
+                <!-- Grid Informasi -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Detail Transaksi -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-700 mb-3">Detail Transaksi</h3>
+                        <p class="text-gray-700"><strong>Nama:</strong> <span class="font-normal">{{ $order->product->airline }}</span></p>
+                        <p class="text-gray-700"><strong>Kuantitas:</strong> <span class="font-normal">{{ $order->quantity }}</span></p>
+                        <p class="text-violet-900 font-semibold mt-4 text-lg">Rp {{ number_format($order->total_price, 2) }}</p>
+                    </div>
+        
+                    <!-- Detail Pelanggan -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-700 mb-3">Detail Pelanggan</h3>
+                        <p class="text-gray-700"><strong>Nama:</strong> <span class="font-normal">{{ $order->name }}</span></p>
+                        <p class="text-gray-700"><strong>Email:</strong> <span class="font-normal">{{ $order->email }}</span></p>
+                        <p class="text-gray-700"><strong>Telepon:</strong> <span class="font-normal">{{ $order->phone }}</span></p>
+                    </div>
+                </div>
+        
+                <!-- Tombol Aksi -->
+                <div class="flex justify-end mt-6">
+                    <a href="{{ route('dashboard') }}"
+                        class="bg-violet-900 hover:bg-violet-950 text-white font-semibold py-2 px-5 rounded-lg shadow-md transition duration-200">
+                        Kembali ke Dashboard
+                    </a>
                 </div>
             </div>
-
-            <!-- Status -->
-            <div class="mt-4 text-center">
-                <p class="text-green-600 font-bold">Status: Lunas</p>
-            </div>
-        </div>
-
-        <!-- Tombol Cetak -->
-        <div class="text-center mt-6">
-            <a href="{{ route('dashboard')}}"
-                class="px-6 py-2 bg-green-500 text-white rounded-md shadow hover:bg-green-600">
-                Kembali ke Dashboard
-            </a>
-            <button> 
-        </div>
-</body>
-
+        </div> 
+    </body>
 </html>

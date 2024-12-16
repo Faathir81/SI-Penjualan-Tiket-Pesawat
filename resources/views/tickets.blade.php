@@ -19,7 +19,7 @@
                                 Lokasi Keberangkatan
                             </label>
                             <input type="text" name="departure_location" id="departure_location"
-                                placeholder="Masukkan lokasi keberangkatan"
+                                placeholder="Masukkan"
                                 class="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-violet-950 focus:border-indigo-500"
                                 value="{{ request('departure_location') }}">
                         </div>
@@ -30,7 +30,7 @@
                                 Lokasi Tiba
                             </label>
                             <input type="text" name="arrival_location" id="arrival_location"
-                                placeholder="Masukkan lokasi tiba"
+                                placeholder="Masukkan"
                                 class="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-violet-950 focus:border-indigo-500"
                                 value="{{ request('arrival_location') }}">
                         </div>
