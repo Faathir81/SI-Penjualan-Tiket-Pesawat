@@ -3,7 +3,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       <!-- Card 1 -->
       <div class="max-w-sm rounded-lg overflow-hidden shadow-lg border border-gray-200">
-        <img class="w-full h-48 object-cover" src="https://via.placeholder.com/400x200" alt="Jakarta ke Hongkong">
+        <img class="w-full h-48 object-cover" src="https://giliislandfastboats.com/wp-content/uploads/2011/04/Bali-Temple-Ubud-400x200.jpg" alt="Jakarta ke Bali">
         <div class="p-4">
           <h3 class="text-lg font-bold mb-1">Jakarta → Bali</h3>
           <p class="text-gray-500 text-sm mb-2">2 Jan 2024</p>
@@ -23,7 +23,7 @@
 
       <!-- Card 2 -->
       <div class="max-w-sm rounded-lg overflow-hidden shadow-lg border border-gray-200">
-        <img class="w-full h-48 object-cover" src="https://via.placeholder.com/400x200" alt="Jakarta ke Singapore">
+        <img class="w-full h-48 object-cover" src="https://www.portland.gov/sites/default/files/styles/2_1_400w/public/2024/26923008166_fe9b84eb49_6k.jpg?itok=3wt0uNZu" alt="Jakarta ke Yogyakarta">
         <div class="p-4">
           <h3 class="text-lg font-bold mb-1">Jakarta → Yogyakarta</h3>
           <p class="text-gray-500 text-sm mb-2">2 Jan 2024</p>
@@ -43,7 +43,7 @@
 
       <!-- Card 3 -->
       <div class="max-w-sm rounded-lg overflow-hidden shadow-lg border border-gray-200">
-        <img class="w-full h-48 object-cover" src="https://via.placeholder.com/400x200" alt="Jakarta ke Taiwan">
+        <img class="w-full h-48 object-cover" src="https://loving-newyork.com/wp-content/uploads/2021/10/Winter_in_New_York_160928170522003_1600x800-400x200.jpg" alt="Jakarta ke Padang">
         <div class="p-4">
           <h3 class="text-lg font-bold mb-1">Jakarta → Padang</h3>
           <p class="text-gray-500 text-sm mb-2">2 Jan 2024</p>

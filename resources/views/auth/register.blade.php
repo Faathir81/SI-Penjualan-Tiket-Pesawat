@@ -52,20 +52,33 @@
             </div>
 
             <!-- Buttons Section -->
-            <div class="flex items-center justify-end space-x-4">
-                <!-- Already have an account -->
-                <a href="{{ route('login') }}" class="text-purple-800 hover:text-purple-600 underline text-sm">
-                    Already have an account?
-                </a>
-                <a href="{{ route('auth.google') }}">
-                    <x-application-logo-light />klik untuk login akun google
-                </a>
-                <!-- Register Button -->
-                <button type="submit"
-                    class="px-4 py-2 bg-violet-900 text-white rounded-md shadow-lg hover:bg-violet-800 focus:outline-none">
-                    Sign Up
-                </button>
-            </div>
+            <div class="space-y-4 mt-4">
+                <!-- Register Button dan Login dengan Google -->
+                <div class="flex items-center justify-center space-x-4">
+                    <!-- Register Button -->
+                    <button type="submit"
+                        class="px-4 py-2 bg-violet-900 text-white rounded-md shadow hover:bg-violet-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500">
+                        {{ __('Sign Up') }}
+                    </button>
+            
+                    <!-- Login with Google -->
+                    <a href="{{ route('auth.google') }}"
+                        class="flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md shadow hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                        <!-- Google Icon -->
+                        <img src="https://cdn-icons-png.flaticon.com/256/2702/2702602.png"
+                            alt="Google Logo" class="w-6 h-6 mr-2">
+                        <span class="text-gray-700 text-sm font-medium">Register with Google</span>
+                    </a>
+                </div>
+            
+                <!-- Sudah punya akun -->
+                <div class="flex justify-center">
+                    <a href="{{ route('login') }}"
+                        class="text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        {{ __('Already have an account?') }}
+                    </a>
+                </div>
+            </div>            
         </form>
     </div>
 </x-guest-layout>

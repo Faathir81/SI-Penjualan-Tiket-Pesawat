@@ -3,7 +3,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       <!-- Card 1 -->
       <div class="max-w-sm rounded-lg overflow-hidden shadow-lg border border-gray-200">
-        <img class="w-full h-48 object-cover" src="https://via.placeholder.com/400x200" alt="Jakarta ke Hongkong">
+        <img class="w-full h-48 object-cover" src="https://static.vecteezy.com/system/resources/thumbnails/002/141/637/small/panorama-view-of-hong-kong-skyline-china-photo.jpg" alt="Jakarta ke Hongkong">
         <div class="p-4">
           <h3 class="text-lg font-bold mb-1">Jakarta → Hongkong</h3>
           <p class="text-gray-500 text-sm mb-2">2 Jan 2024</p>
@@ -23,7 +23,7 @@
 
       <!-- Card 2 -->
       <div class="max-w-sm rounded-lg overflow-hidden shadow-lg border border-gray-200">
-        <img class="w-full h-48 object-cover" src="https://via.placeholder.com/400x200" alt="Jakarta ke Singapore">
+        <img class="w-full h-48 object-cover" src="https://imgc.artprintimages.com/img/print/hanna-slavinska-singapore-skyline-and-view-of-skyscrapers-on-marina-bay_u-l-q130anm0.jpg?background=F3F3F3" alt="Jakarta ke Singapore">
         <div class="p-4">
           <h3 class="text-lg font-bold mb-1">Jakarta → Singapore</h3>
           <p class="text-gray-500 text-sm mb-2">12 Jan 2024</p>
@@ -43,7 +43,7 @@
 
       <!-- Card 3 -->
       <div class="max-w-sm rounded-lg overflow-hidden shadow-lg border border-gray-200">
-        <img class="w-full h-48 object-cover" src="https://via.placeholder.com/400x200" alt="Jakarta ke Taiwan">
+        <img class="w-full h-48 object-cover" src="https://timess3spore.s3.amazonaws.com/ndata/et_images/mobile_image_webp/835043e96ad0da5c24f368c01c9dada8thumbnail_Tiwan-portal-pic.webp" alt="Jakarta ke Taiwan">
         <div class="p-4">
           <h3 class="text-lg font-bold mb-1">Jakarta → Taiwan</h3>
           <p class="text-gray-500 text-sm mb-2">24 Jan 2024</p>

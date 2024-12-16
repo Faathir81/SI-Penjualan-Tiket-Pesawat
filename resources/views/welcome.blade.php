@@ -7,7 +7,7 @@
             alt="Laravel background" />
 
         <!-- Main Content -->
-        <div class="relative z-10 min-h-screen flex flex-col items-start justify-center px-12">
+        <div class="relative z-10 min-h-screen flex flex-col items-start justify-center px-60">
             <!-- Text Section -->
             <div class="mb-7">
                 <h1 class="text-white text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight">
@@ -29,8 +29,8 @@
                             Lokasi Keberangkatan
                         </label>
                         <input type="text" name="departure_location" id="departure_location"
-                            placeholder="Masukkan lokasi keberangkatan"
-                            class="w-full px-4 py-3 mt-1 bg-white border border-gray-300 rounded-md shadow-sm text-gray-700 placeholder-gray-400 focus:ring-indigo-500 focus:border-indigo-500">
+                            placeholder="Masukkan"
+                            class="w-full px-6 py-3 mt-1 bg-white border border-gray-300 rounded-md shadow-sm text-gray-700 placeholder-gray-400 focus:ring-indigo-500 focus:border-indigo-500">
                     </div>
 
                     <!-- Lokasi Tiba -->
@@ -39,7 +39,7 @@
                             Lokasi Tiba
                         </label>
                         <input type="text" name="arrival_location" id="arrival_location"
-                            placeholder="Masukkan lokasi tiba"
+                            placeholder="Masukkan"
                             class="w-full px-4 py-3 mt-1 bg-white border border-gray-300 rounded-md shadow-sm text-gray-700 placeholder-gray-400 focus:ring-indigo-500 focus:border-indigo-500">
                     </div>
 

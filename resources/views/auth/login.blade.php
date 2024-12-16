@@ -40,28 +40,35 @@
                 </label>
             </div>
 
-            <div class="flex items-center justify-between mt-4">
-                <!-- Login with Google -->
-                <a href="{{ route('auth.google') }}">
-                    <x-application-logo-light />klik untuk login akun google
-                </a>
+            <div class="space-y-4 mt-4">
+                <div class="flex items-center justify-center space-x-4">
+                    <!-- Login Button -->
+                    <button type="submit"
+                        class="px-4 py-2 bg-violet-900 text-white rounded-md shadow hover:bg-violet-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500">
+                        {{ __('Log in') }}
+                    </button>
 
-
-                <!-- Forgot Password -->
-                @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-                @endif
-
-
-                <!-- Login Button -->
-                <button type="submit"
-                    class="px-3 py-2 bg-violet-900 text-white rounded-md shadow-lg hover:bg-violet-800 focus:outline-none">
-                    {{ __('Log in') }}
-                </button>
+                    <a href="{{ route('auth.google') }}"
+                    class="flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md shadow hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                        <!-- Google Icon -->
+                        <img src="https://cdn-icons-png.flaticon.com/256/2702/2702602.png"
+                            alt="Google Logo" class="w-6 h-6 mr-2">
+                        <span class="text-gray-700 text-sm font-medium">Login with Google</span>
+                    </a>
+                </div>
+            
+                <!-- Login with Google (Dibawah) -->
+                <div class="flex justify-center">
+                    <!-- Forgot Password -->
+                    @if (Route::has('password.request'))
+                    <a class="text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        href="{{ route('password.request') }}">
+                        {{ __('Forgot your password?') }}
+                    </a>
+                    @endif
+                </div>
             </div>
+                       
 
         </form>
     </div>

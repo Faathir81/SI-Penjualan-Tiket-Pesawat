@@ -4,9 +4,9 @@
             {{ __('Tickets') }}
         </h2>
     </x-slot>
-    <div class="py-12">
-        <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg px-6 py-8">
+    <div class="py-12 px-64">
+        <div class="max-w-10xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg px-4 py-8">
 
                 <!-- Form Pencarian -->
                 <div class="mb-6 max-w-7xl mx-auto sm:px-6 lg:px-8 flex">
@@ -49,8 +49,8 @@
                 @if ($products->isEmpty())
                 <p class="text-gray-500">Tidak ada tiket yang ditemukan untuk pencarian Anda.</p>
                 @else
-                <h2 class="text-lg font-semibold text-gray-800 mb-4">Daftar Tiket</h2>
-                <div class="overflow-x-auto">
+                <div class="max-w-7xl mx-auto">
+                    <h2 class="text-lg font-semibold text-gray-800 mb-4">Daftar Tiket</h2>  
                     <table class="min-w-full border-collapse border border-gray-200 bg-gray-50 shadow-lg rounded-lg">
                         <tbody>
                             @foreach ($products as $product)
